@@ -1284,7 +1284,7 @@ const Home = () => {
                             : "demo-video.mp4"
                         }
                         controls
-                        playing={true}
+                        playing={false}
                         muted={true}
                         width={"100%"}
                         height={80}
@@ -1414,7 +1414,7 @@ const Home = () => {
                                   pageStaticContent?.image2
                                 : "demo-video.mp4"
                             }
-                            playing={true}
+                            playing={false}
                             muted={true}
                             width={"50%"}
                             height={80}
@@ -1495,7 +1495,7 @@ const Home = () => {
                             ? process.env.SITE_URL + pageStaticContent?.image3
                             : "demo-video.mp4"
                         }
-                        playing={true}
+                        playing={false}
                         muted={true}
                         width={"50%"}
                         height={80}
@@ -2485,7 +2485,7 @@ const Home = () => {
                                                     item?.media
                                                   : "/no-img.jpg"
                                               }
-                                              playing={true}
+                                              playing={false}
                                               muted={true}
                                               width={"100px"}
                                               height={"80"}
@@ -2493,7 +2493,7 @@ const Home = () => {
                                           ) : (
                                             <ReactPlayer
                                               url={item?.media}
-                                              playing={true}
+                                              playing={false}
                                               muted={true}
                                               width={"100px"}
                                               height={"80px"}
@@ -2704,7 +2704,7 @@ const Home = () => {
                                         : "demo-video.mp4"
                                     }
                                     controls
-                                    playing={true}
+                                    playing={false}
                                     muted={true}
                                     width={"50%"}
                                     height={80}
@@ -3106,7 +3106,7 @@ function showVideo(fileSrc) {
       ) : (
         <ReactPlayer
           url={fileSrc}
-          playing={true}
+          playing={false}
           muted={true}
           width={"50%"}
           height={80}
@@ -3123,7 +3123,7 @@ function showYoutube(fileSrc) {
   return (
     <ReactPlayer
       url={fileSrc}
-      playing={true}
+      playing={false}
       muted={true}
       width={"50%"}
       height={80}
