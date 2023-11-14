@@ -655,10 +655,9 @@ function MainPage({ metaData }) {
                       : newsSectionFirstData?.news_artical}
                   </p>
                   {newsSectionFirstData?.news_artical?.length > 500 && (
-                    <button
-                      type="button"
-                      className="readbtn"
-                      disabled={showLoader}
+                    <Link
+                      href={"/news/" + newsSectionFirstData?.id}
+                      target="_blank"
                       onClick={() =>
                         updateNewsView(
                           newsSectionFirstData?.id,
@@ -666,13 +665,34 @@ function MainPage({ metaData }) {
                         )
                       }
                     >
-                      Read More {/*M capitalist by sudhanshu*/}
-                    </button>
+                      <button
+                        type="button"
+                        className="readbtn"
+                        disabled={showLoader}
+                        onClick={() =>
+                          updateNewsView(
+                            newsSectionFirstData?.id,
+                            newsSectionFirstData?.view
+                          )
+                        }
+                      >
+                        Read More {/*M capitalist by sudhanshu*/}
+                      </button>
+                    </Link>
                   )}
                   <div className="row mt-4 icons">
                     <div className="col-md-2">
                       <h3 className="align-self-center">
-                        <Link href="#!" target="_blank">
+                        <Link
+                          href={"/news/" + newsSectionFirstData?.id}
+                          target="_blank"
+                          onClick={() =>
+                            updateNewsView(
+                              newsSectionFirstData?.id,
+                              newsSectionFirstData?.view
+                            )
+                          }
+                        >
                           <span className="share_wrap">
                             <i className="fa fa-comment" aria-hidden="true" />
                             {featuredCmts?.length > 0
