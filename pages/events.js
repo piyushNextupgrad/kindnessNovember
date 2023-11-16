@@ -41,6 +41,8 @@ const Events = () => {
   const [trackFilter, settrackFilter] = useState(null);
   const [Attention, setAttention] = useState("");
   const [promo, setpromo] = useState([]);
+  const [allEvents, setallEvents] = useState([]);
+  const [filteredAllEvents, setfilteredAllEvents] = useState([]);
 
   const router = useRouter();
 
@@ -149,6 +151,20 @@ const Events = () => {
           showNotification("Please reset the date filter.");
         }
       }
+      if (activeTabIndex == 3) {
+        const allFilter = filteredAllEvents.filter((item) => item.date == date);
+        if (trackFilter == null) {
+          if (allFilter.length > 0) {
+            settrackFilter(1);
+            setfilteredAllEvents(allFilter);
+          } else {
+            setDate("");
+            showNotification("No Events on the selected date.");
+          }
+        } else {
+          showNotification("Please reset the date filter.");
+        }
+      }
     } else if (date == "") {
       settrackFilter(null);
       setDate(null);
@@ -188,6 +204,30 @@ const Events = () => {
     }
   };
 
+  useEffect(() => {
+    if (allEvents.length) {
+      const uniqueArray = allEvents.reduce((accumulator, currentEvent) => {
+        const isDuplicate = accumulator.some(
+          (existingEvent) => existingEvent.id === currentEvent.id
+        );
+
+        if (!isDuplicate) {
+          accumulator.push(currentEvent);
+        }
+
+        return accumulator;
+      }, []);
+
+      setfilteredAllEvents(uniqueArray);
+
+      console.log("====>", filteredAllEvents);
+    }
+  }, [allEvents]);
+  useEffect(() => {
+    // Once todayEvent, weekEvent, and monthEvent are updated, update allEvents
+    setallEvents([...todayEvent, ...weekEvent, ...monthEvent]);
+  }, [todayEvent, weekEvent, monthEvent]);
+
   const showAllEvents = async () => {
     //function to fetch filter data at page load(today , week , month).
     try {
@@ -201,6 +241,9 @@ const Events = () => {
         setTodayEvent(newsResp?.data?.today_events);
         setMonthEvent(newsResp?.data?.this_month_events);
         setWeekEvent(newsResp?.data?.this_week_events);
+
+        // setallEvents([...todayEvent, ...weekEvent, ...monthEvent]);
+
         setListAllEventData(newsResp?.data);
 
         setEventListLoader(false);
@@ -450,7 +493,6 @@ const Events = () => {
 
                               <div className="col-md-12 col-lg-8 mt-4">
                                 <p className="fst_event">
-                                  TODAY
                                   <span>
                                     {/* <i
                                     className="fa fa-download"
@@ -543,7 +585,6 @@ const Events = () => {
 
                               <div className="col-md-12 col-lg-8 mt-4">
                                 <p className="fst_event">
-                                  THIS WEEK{" "}
                                   <span>
                                     {/* <i
                                     className="fa fa-download"
@@ -636,7 +677,6 @@ const Events = () => {
 
                               <div className="col-md-12 col-lg-8 mt-4">
                                 <p className="fst_event">
-                                  THIS MONTH{" "}
                                   <span>
                                     {/* <i
                                     className="fa fa-download"
@@ -696,7 +736,6 @@ const Events = () => {
                       {eventListLoader ? (
                         <Spinner
                           style={{
-                            display: "none",
                             width: "50px",
                             height: "50px",
                             align: "center",
@@ -704,8 +743,8 @@ const Events = () => {
                           }}
                           animation="border"
                         />
-                      ) : todayEvent?.length ? (
-                        todayEvent?.map((item, index) => (
+                      ) : filteredAllEvents?.length ? (
+                        filteredAllEvents?.map((item, index) => (
                           <div className="container" key={randomKey()}>
                             <div className="row">
                               <div className="col-md-12 col-lg-4 mt-4">
@@ -727,9 +766,8 @@ const Events = () => {
                                 {/* </Link> */}
                               </div>
 
-                              <div className="col-md-12 col-lg-8  mt-4">
+                              <div className="col-md-12 col-lg-8 mt-4">
                                 <p className="fst_event">
-                                  TODAY{" "}
                                   <span>
                                     {/* <i
                                     className="fa fa-download"
@@ -781,180 +819,9 @@ const Events = () => {
                             </div>
                           </div>
                         ))
-                      ) : null}
-                      {eventListLoader ? (
-                        <Spinner
-                          style={{
-                            display: "none",
-                            width: "50px",
-                            height: "50px",
-                            align: "center",
-                            color: "#333",
-                          }}
-                          animation="border"
-                        />
-                      ) : weekEvent?.length ? (
-                        weekEvent?.map((item, index) => (
-                          <div className="container" key={randomKey()}>
-                            <div className="row">
-                              <div className="col-md-12 col-lg-4 mt-4">
-                                {/* <Link href={`${"/event/"}${item?.id}`}> */}
-                                <Image
-                                  className="eventImageIcon"
-                                  src={
-                                    item?.event_media
-                                      ? process.env.SITE_URL + item?.event_media
-                                      : "/today_event_img.png"
-                                  }
-                                  width={200}
-                                  height={250}
-                                  alt={item?.event_title}
-                                  onClick={() =>
-                                    updateEventView(item?.id, item?.hits)
-                                  }
-                                />
-                                {/* </Link> */}
-                              </div>
-
-                              <div className="col-md-12 col-lg-8 mt-4">
-                                <p className="fst_event">
-                                  THIS WEEK{" "}
-                                  <span>
-                                    {/* <i
-                                    className="fa fa-download"
-                                    aria-hidden="true"
-                                  ></i> */}
-                                  </span>
-                                </p>
-                                <p className="fst_event">
-                                  {item?.date
-                                    ? getFormatedDate(item?.date, "M-D-Y")
-                                    : null}{" "}
-                                  {item?.time
-                                    ? convertTo12HourFormat(item?.time)
-                                    : null}
-                                </p>
-                                {/* <p className="fst_event">{item?.time} 3:00pm - 5:30pm</p> */}
-
-                                {/* <Link href={`${"/event/"}${item?.id}`}> */}
-                                <p className="fst_event color_heading eventImageIcon">
-                                  {item?.event_title}
-                                </p>
-                                {/* </Link> */}
-
-                                <p className="fst_event">
-                                  <b>Location:</b> {item?.location_address},{" "}
-                                  {item?.city}, {item?.state}
-                                </p>
-                                <p className="fst_event">
-                                  <b>Event Type:</b> {item?.event_type}
-                                </p>
-                                <p className="fst_event">
-                                  <b>Cost:</b> {item?.event_cost}{" "}
-                                  <span>
-                                    {/* <i
-                                    className="fa fa-plus-square-o"
-                                    aria-hidden="true"
-                                  ></i> */}
-                                    <i className="fa fa-eye" aria-hidden="true">
-                                      {item?.hits == null ? 0 : item?.hits}
-                                    </i>
-                                  </span>
-                                </p>
-                              </div>
-                            </div>
-                          </div>
-                        ))
-                      ) : null}
-                      {eventListLoader ? (
-                        <Spinner
-                          style={{
-                            width: "50px",
-                            height: "50px",
-                            align: "center",
-                            color: "#333",
-                          }}
-                          animation="border"
-                        />
-                      ) : monthEvent?.length ? (
-                        monthEvent?.map((item, index) => (
-                          <div className="container" key={randomKey()}>
-                            <div className="row">
-                              <div className="col-md-12 col-lg-4 mt-4">
-                                {/* <Link href={`${"/event/"}${item?.id}`}> */}
-                                <Image
-                                  className="eventImageIcon"
-                                  src={
-                                    item?.event_media
-                                      ? process.env.SITE_URL + item?.event_media
-                                      : "/today_event_img.png"
-                                  }
-                                  width={200}
-                                  height={250}
-                                  alt={item?.event_title}
-                                  onClick={() =>
-                                    updateEventView(item?.id, item?.hits)
-                                  }
-                                />
-                                {/* </Link> */}
-                              </div>
-
-                              <div className="col-md-12 col-lg-8 mt-4">
-                                <p className="fst_event">
-                                  THIS MONTH{" "}
-                                  <span>
-                                    {/* <i
-                                    className="fa fa-download"
-                                    aria-hidden="true"
-                                  ></i> */}
-                                  </span>
-                                </p>
-                                <p className="fst_event">
-                                  {item?.date
-                                    ? getFormatedDate(item?.date, "M-D-Y")
-                                    : null}{" "}
-                                  {item?.time
-                                    ? convertTo12HourFormat(item?.time)
-                                    : null}
-                                </p>
-                                {/* <p className="fst_event">{item?.time} 3:00pm - 5:30pm</p> */}
-
-                                {/* <Link href={`${"/event/"}${item?.id}`}> */}
-                                <p
-                                  className="fst_event color_heading eventImageIcon"
-                                  onClick={() =>
-                                    updateEventView(item?.id, item?.hits)
-                                  }
-                                >
-                                  {item?.event_title}
-                                </p>
-                                {/* </Link> */}
-
-                                <p className="fst_event">
-                                  <b>Location:</b> {item?.location_address},{" "}
-                                  {item?.city}, {item?.state}
-                                </p>
-                                <p className="fst_event">
-                                  <b>Event Type:</b> {item?.event_type}
-                                </p>
-                                <p className="fst_event">
-                                  <b>Cost:</b> {item?.event_cost}{" "}
-                                  <span>
-                                    {/* <i
-                                      className="fa fa-plus-square-o"
-                                      aria-hidden="true"
-                                    ></i> */}
-
-                                    <i className="fa fa-eye" aria-hidden="true">
-                                      {item?.hits == null ? 0 : item?.hits}
-                                    </i>
-                                  </span>
-                                </p>
-                              </div>
-                            </div>
-                          </div>
-                        ))
-                      ) : null}
+                      ) : (
+                        <section className="tabPanel">No events found</section>
+                      )}
                     </TabPanel>
                   </Tabs>
                 </div>

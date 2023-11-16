@@ -771,7 +771,6 @@ const singleEventData = ({ filter_data }) => {
 
                             <div className="col-md-12 col-lg-8 mt-4">
                               <p className="fst_event">
-                                THIS WEEK{" "}
                                 <span>
                                   {/* <i
                                     className="fa fa-download"
@@ -862,7 +861,6 @@ const singleEventData = ({ filter_data }) => {
 
                             <div className="col-md-12 col-lg-8 mt-4">
                               <p className="fst_event">
-                                THIS MONTH{" "}
                                 <span>
                                   {/* <i
                                     className="fa fa-download"
