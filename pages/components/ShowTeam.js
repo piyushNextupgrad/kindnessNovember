@@ -39,7 +39,9 @@ const TeamModal = (props) => {
                                 <td className="nameWidthIncrease">
                                   {item?.column_1} {item?.column_2}
                                 </td>
-                                <td>{item?.description}</td>
+                                <td className="fixLineHeight">
+                                  {item?.description}
+                                </td>
                               </tr>
                             );
                           }

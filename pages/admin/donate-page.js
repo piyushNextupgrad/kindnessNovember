@@ -55,8 +55,8 @@ const DonatePage = () => {
       setDownloadLoader(true);
 
       let params = {};
-      params.start_date = getFormatedDate(startDate, "MM/DD/YYYY");
-      params.end_date = getFormatedDate(endDate, "MM/DD/YYYY");
+      params.start_date = getFormatedDate(startDate, "DD-MM-YYYY");
+      params.end_date = getFormatedDate(endDate, "DD-MM-YYYY");
       let resp = await getDonatePageSevices.downloadDonorList(params);
 
       if (resp?.data?.success) {

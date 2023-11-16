@@ -315,7 +315,7 @@ const EventPage = () => {
           formData.append("eventTitle", editEventTitle);
         }
         if (editStartDate) {
-          formData.append("date", getFormatedDate(editStartDate, "MM/DD/YYYY"));
+          formData.append("date", getFormatedDate(editStartDate, "YYYY-MM-DD"));
         }
         if (editEventDescription3 != "") {
           formData.append("eventDescription", editEventDescription3);
@@ -554,7 +554,7 @@ const EventPage = () => {
           const formData = new FormData();
           formData.append("eventTitle", eventTitle);
           formData.append("eventDescription", eventDescription3);
-          formData.append("date", getFormatedDate(startDate, "MM/DD/YYYY"));
+          formData.append("date", getFormatedDate(startDate, "YYYY-MM-DD"));
           formData.append("time", time);
           formData.append("eventType", eventType2);
           formData.append("locationAddress", locationAddress);
@@ -613,7 +613,7 @@ const EventPage = () => {
           const formData = new FormData();
           formData.append("eventTitle", eventTitle);
           formData.append("eventDescription", eventDescription3);
-          formData.append("date", getFormatedDate(startDate, "MM/DD/YYYY"));
+          formData.append("date", getFormatedDate(startDate, "YYYY-MM-DD"));
           formData.append("time", time);
           formData.append("eventType", eventType2);
           formData.append("locationAddress", locationAddress);

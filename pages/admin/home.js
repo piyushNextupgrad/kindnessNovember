@@ -1162,7 +1162,7 @@ const Home = () => {
   };
 
   const setDateFormate = (data) => {
-    let date = getFormatedDate(data, "MM/DD/YYYY");
+    let date = getFormatedDate(data, "YYYY-MM-DD");
     setCampDate(date);
   };
 
