@@ -138,7 +138,7 @@ const GetInvolved = () => {
       setIsSubmitingLoader(true);
       const formData = new FormData();
       formData.append("pageName", "get_involved");
-      formData.append("volunteerText", volText);
+      formData.append("learnMoreHeader", volText);
 
       try {
         const resp = await getInvolvePageSevices.updateLearnMoreSection(
