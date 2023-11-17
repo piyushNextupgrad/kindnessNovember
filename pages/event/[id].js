@@ -93,19 +93,38 @@ const singleEventData = ({ filter_data }) => {
   async function handlersvp() {
     const eventId = router.query.id;
     if (name != "" && email != "" && city != "" && state != "") {
-      try {
-        const formData = new FormData();
-        formData.append("eventId", eventId);
-        formData.append("userName", name);
-        formData.append("email", email);
-        formData.append("city", city);
-        formData.append("state", state);
-        const mediaResp3 = await eventPageSevices.updateRSVP(formData);
-        console.log("RSVP", mediaResp3);
-      } catch (err) {
-        console.log(err);
+      if (email.includes("@")) {
+        setIsSubmittingLoader(true);
+        try {
+          const formData = new FormData();
+          formData.append("eventId", eventId);
+          formData.append("userName", name);
+          formData.append("email", email);
+          formData.append("city", city);
+          formData.append("state", state);
+          const mediaResp3 = await eventPageSevices.updateRSVP(formData);
+          console.log("RSVP FORM", mediaResp3);
+          if (mediaResp3.data.success == true) {
+            setIsSubmittingLoader(false);
+            setShow(false);
+            showNotification(
+              "Thank you ! your response has been saved",
+              "Success"
+            );
+          } else {
+            setIsSubmittingLoader(false);
+            showNotification("response not saved", "Error");
+          }
+        } catch (err) {
+          setIsSubmittingLoader(false);
+          console.log(err);
+        }
+      } else {
+        setIsSubmittingLoader(false);
+        showNotification("Email must be a valid Email", "Error");
       }
     } else {
+      setIsSubmittingLoader(false);
       showNotification("Please fill all fields");
     }
   }
@@ -385,6 +404,21 @@ const singleEventData = ({ filter_data }) => {
 
   return (
     <Layout title={"single Event"}>
+      {isSubmittingLoader ? (
+        <div className="overlay">
+          <div className="spinner-container">
+            <Spinner
+              className="loaderSpinnerPiyush"
+              style={{
+                width: "100px",
+                height: "100px",
+                color: "#0a1c51fc",
+              }}
+              animation="border"
+            />
+          </div>
+        </div>
+      ) : null}
       <section>
         <div className="container">
           <div className="event_wrap_main ">
