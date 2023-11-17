@@ -112,94 +112,114 @@ const GetInvolved = () => {
 
   async function updateData(data) {
     if (data == "section1") {
-      setIsSubmitingLoader(true);
+      if (interest != "") {
+        setIsSubmitingLoader(true);
 
-      const formData = new FormData();
-      formData.append("interest", interest);
-      formData.append("active", active);
-      try {
-        const resp = await getInvolvePageSevices.updateInterestSetupSection(
-          formData
-        );
+        const formData = new FormData();
+        formData.append("interest", interest);
+        formData.append("active", active);
+        try {
+          const resp = await getInvolvePageSevices.updateInterestSetupSection(
+            formData
+          );
 
-        if (resp?.data?.success) {
+          if (resp?.data?.success) {
+            setIsSubmitingLoader(false);
+            showNotification(resp?.data?.message, "Success");
+            setinterest("");
+          } else {
+            setIsSubmitingLoader(false);
+            showNotification(resp?.data?.message, "Error");
+          }
+        } catch (err) {
+          // Handle any other errors that may occur during the request
           setIsSubmitingLoader(false);
-          showNotification(resp?.data?.message, "Success");
-        } else {
-          setIsSubmitingLoader(false);
-          showNotification(resp?.data?.message, "Error");
+          console.log(err);
         }
-      } catch (err) {
-        // Handle any other errors that may occur during the request
-        setIsSubmitingLoader(false);
-        console.log(err);
+      } else {
+        showNotification("Please fill all the fields", "Error");
       }
     } else if (data == "section2") {
-      setIsSubmitingLoader(true);
-      const formData = new FormData();
-      formData.append("pageName", "get_involved");
-      formData.append("learnMoreHeader", volText);
+      if (volText != "") {
+        setIsSubmitingLoader(true);
+        const formData = new FormData();
+        formData.append("pageName", "get_involved");
+        formData.append("learnMoreHeader", volText);
 
-      try {
-        const resp = await getInvolvePageSevices.updateLearnMoreSection(
-          formData
-        );
-        if (resp?.data?.success) {
+        try {
+          const resp = await getInvolvePageSevices.updateLearnMoreSection(
+            formData
+          );
+          if (resp?.data?.success) {
+            setIsSubmitingLoader(false);
+            setVolText("");
+            showNotification(resp?.data?.message, "Success");
+          } else {
+            setIsSubmitingLoader(false);
+            showNotification(resp?.data?.message, "Error");
+          }
+        } catch (err) {
+          // Handle any other errors that may occur during the request
           setIsSubmitingLoader(false);
-          showNotification(resp?.data?.message, "Success");
-        } else {
-          setIsSubmitingLoader(false);
-          showNotification(resp?.data?.message, "Error");
+          console.log(err);
         }
-      } catch (err) {
-        // Handle any other errors that may occur during the request
-        setIsSubmitingLoader(false);
-        console.log(err);
+      } else {
+        showNotification("Please fill all the fields", "Error");
       }
     } else if (data == "section3") {
-      setIsSubmitingLoader(true);
-      const formData = new FormData();
-      formData.append("pageName", "get_involved");
-      formData.append("volunteerText", volunteerText);
+      if (volunteerText != "") {
+        setIsSubmitingLoader(true);
+        const formData = new FormData();
+        formData.append("pageName", "get_involved");
+        formData.append("volunteerText", volunteerText);
 
-      try {
-        const resp = await getInvolvePageSevices.updateLearnMoreSection(
-          formData
-        );
-        if (resp?.data?.success) {
+        try {
+          const resp = await getInvolvePageSevices.updateLearnMoreSection(
+            formData
+          );
+          if (resp?.data?.success) {
+            setIsSubmitingLoader(false);
+            setVolunteerText("");
+            showNotification(resp?.data?.message, "Success");
+          } else {
+            setIsSubmitingLoader(false);
+            showNotification(resp?.data?.message, "Error");
+          }
+        } catch (err) {
+          // Handle any other errors that may occur during the request
           setIsSubmitingLoader(false);
-          showNotification(resp?.data?.message, "Success");
-        } else {
-          setIsSubmitingLoader(false);
-          showNotification(resp?.data?.message, "Error");
+          console.log(err);
         }
-      } catch (err) {
-        // Handle any other errors that may occur during the request
-        setIsSubmitingLoader(false);
-        console.log(err);
+      } else {
+        showNotification("Please fill all the fields", "Error");
       }
     } else if (data == "section4") {
-      setIsSubmitingLoader(true);
+      if (partnerText != "") {
+        setIsSubmitingLoader(true);
 
-      const formData = new FormData();
-      formData.append("pageName", "get_involved");
-      formData.append("partnerText", partnerText);
+        const formData = new FormData();
+        formData.append("pageName", "get_involved");
+        formData.append("partnerText", partnerText);
 
-      try {
-        const resp = await getInvolvePageSevices.updateLearnMoreSection(
-          formData
-        );
-        if (resp?.data?.success) {
+        try {
+          const resp = await getInvolvePageSevices.updateLearnMoreSection(
+            formData
+          );
+          if (resp?.data?.success) {
+            setIsSubmitingLoader(false);
+            setpartnerText("");
+            showNotification(resp?.data?.message, "Success");
+          } else {
+            setIsSubmitingLoader(false);
+            showNotification(resp?.data?.message, "Error");
+          }
+        } catch (err) {
+          // Handle any other errors that may occur during the request
           setIsSubmitingLoader(false);
-          showNotification(resp?.data?.message, "Success");
-        } else {
-          setIsSubmitingLoader(false);
-          showNotification(resp?.data?.message, "Error");
+          console.log(err);
         }
-      } catch (err) {
-        // Handle any other errors that may occur during the request
-        setIsSubmitingLoader(false);
-        console.log(err);
+      } else {
+        showNotification("Please fill all the fields", "Error");
       }
     }
   }
@@ -321,60 +341,61 @@ const GetInvolved = () => {
                 </div>
 
                 <div className="col-md-12">
-                  <table className="table">
-                    <thead>
-                      <tr>
-                        <th>Order</th>
-                        <th>Interest Type </th>
-                        <th>Input Date</th>
-                        <th>Active</th>
-                        <th>Action</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {interestList?.map((item, index) => (
-                        <tr key={index}>
-                          <td>{index + 1} </td>
-                          {item?.edit ? (
-                            <>
-                              <td>
-                                <input
-                                  type="text"
-                                  name="description"
-                                  value={text}
-                                  onChange={(e) => settext(e?.target?.value)}
-                                />
-                              </td>
-                              <td></td>
-                              <td>
-                                <input
-                                  type="checkbox"
-                                  name="status"
-                                  checked={editDesActive}
-                                  id="active"
-                                  onChange={(e) =>
-                                    setEditDesActive(e?.target?.checked)
-                                  }
-                                />
-                                {/* <span className="btn ">
+                  <div className="table-responsive">
+                    <table className="table">
+                      <thead>
+                        <tr>
+                          <th>Order</th>
+                          <th>Interest Type </th>
+                          <th>Input Date</th>
+                          <th>Active</th>
+                          <th>Action</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {interestList?.map((item, index) => (
+                          <tr key={index}>
+                            <td>{index + 1} </td>
+                            {item?.edit ? (
+                              <>
+                                <td>
+                                  <input
+                                    type="text"
+                                    name="description"
+                                    value={text}
+                                    onChange={(e) => settext(e?.target?.value)}
+                                  />
+                                </td>
+                                <td></td>
+                                <td>
+                                  <input
+                                    type="checkbox"
+                                    name="status"
+                                    checked={editDesActive}
+                                    id="active"
+                                    onChange={(e) =>
+                                      setEditDesActive(e?.target?.checked)
+                                    }
+                                  />
+                                  {/* <span className="btn ">
                                       {item?.active ? "Yes" : "No"}
                                     </span> */}
-                              </td>
-                            </>
-                          ) : (
-                            <>
-                              <td>{item.interest_type}</td>
-                              <td>
-                                {getFormatedDate(
-                                  item?.created_at,
-                                  "MM/DD/YYYY"
-                                )}
-                              </td>
-                              <td>{parseInt(item.active) ? "Yes" : "No"}</td>
-                            </>
-                          )}
-                          <td>
-                            {/* <button
+                                </td>
+                              </>
+                            ) : (
+                              <>
+                                <td>{item.interest_type}</td>
+                                <td>
+                                  {getFormatedDate(
+                                    item?.created_at,
+                                    "MM/DD/YYYY"
+                                  )}
+                                </td>
+                                <td>{parseInt(item.active) ? "Yes" : "No"}</td>
+                              </>
+                            )}
+                            <td>
+                              {/* <button
                               className="btn btn-primary mx-1"
                               onClick={() =>
                                 item?.edit
@@ -390,44 +411,48 @@ const GetInvolved = () => {
                               Update{" "}
                             </button> */}
 
-                            <button
-                              className="btn btn-primary mx-1"
-                              onClick={() =>
-                                item?.edit
-                                  ? updateFormData(item?.id, "InterestList")
-                                  : editFieldData(
-                                      item?.id,
-                                      index,
-                                      "InterestList"
-                                    )
-                              }
-                            >
-                              {item?.edit ? (
-                                <i
-                                  className="fa fa-floppy-o"
-                                  aria-hidden="true"
-                                />
-                              ) : (
-                                <i
-                                  className="fa fa-pencil-square-o"
-                                  aria-hidden="true"
-                                />
-                              )}
-                            </button>
+                              <button
+                                className="btn btn-primary mx-1"
+                                onClick={() =>
+                                  item?.edit
+                                    ? updateFormData(item?.id, "InterestList")
+                                    : editFieldData(
+                                        item?.id,
+                                        index,
+                                        "InterestList"
+                                      )
+                                }
+                              >
+                                {item?.edit ? (
+                                  <i
+                                    className="fa fa-floppy-o"
+                                    aria-hidden="true"
+                                  />
+                                ) : (
+                                  <i
+                                    className="fa fa-pencil-square-o"
+                                    aria-hidden="true"
+                                  />
+                                )}
+                              </button>
 
-                            <button
-                              className="btn btn-secondary"
-                              onClick={() =>
-                                deleteData(item.id, "InterestList")
-                              }
-                            >
-                              <i className="fa fa-trash-o" aria-hidden="true" />
-                            </button>
-                          </td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
+                              <button
+                                className="btn btn-secondary"
+                                onClick={() =>
+                                  deleteData(item.id, "InterestList")
+                                }
+                              >
+                                <i
+                                  className="fa fa-trash-o"
+                                  aria-hidden="true"
+                                />
+                              </button>
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
                 </div>
               </div>
 
@@ -440,6 +465,7 @@ const GetInvolved = () => {
                 <div className="col-md-6">
                   <div className="form-outline">
                     <textarea
+                      value={interest}
                       className="form-control"
                       placeholder="Type here"
                       name="headerText"
@@ -492,6 +518,7 @@ const GetInvolved = () => {
                     <div className="col-md-12">
                       <div className="form-outline">
                         <textarea
+                          value={volText}
                           className="form-control"
                           placeholder="Type here"
                           name="headerText"
@@ -521,46 +548,51 @@ const GetInvolved = () => {
                   <label className="form-label-1" htmlFor="typeText">
                     Learn More List
                   </label>
-                  <table className="table">
-                    <thead>
-                      <tr>
-                        <th>Order</th>
-                        <th>Name </th>
-                        <th>Email</th>
-                        <th>Phone</th>
-                        <th>Interest</th>
-                        <th>Message</th>
-                        <th>Date</th>
-                        <th>Action</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {learnMoreList?.map((item, key) => (
-                        <tr key={key}>
-                          {console.log("item", item)}
-                          <td>{key + 1}</td>
-                          <td>{item?.name}</td>
-                          <td>{item?.email}</td>
-                          <td>{item?.phone}</td>
-                          <td>{item?.interest_type}</td>
-                          <td>{item?.message}</td>
-                          <td>
-                            {getFormatedDate(item?.created_at, "MM/DD/YYYY")}
-                          </td>
-                          <td>
-                            <button
-                              className="btn btn-secondary"
-                              onClick={() =>
-                                deleteData(item.id, "LearnMoreList")
-                              }
-                            >
-                              <i className="fa fa-trash-o" aria-hidden="true" />
-                            </button>
-                          </td>
+                  <div className="table-responsive">
+                    <table className="table">
+                      <thead>
+                        <tr>
+                          <th>Order</th>
+                          <th>Name </th>
+                          <th>Email</th>
+                          <th>Phone</th>
+                          <th>Interest</th>
+                          <th>Message</th>
+                          <th>Date</th>
+                          <th>Action</th>
                         </tr>
-                      ))}
-                    </tbody>
-                  </table>
+                      </thead>
+                      <tbody>
+                        {learnMoreList?.map((item, key) => (
+                          <tr key={key}>
+                            {console.log("item", item)}
+                            <td>{key + 1}</td>
+                            <td>{item?.name}</td>
+                            <td>{item?.email}</td>
+                            <td>{item?.phone}</td>
+                            <td>{item?.interest_type}</td>
+                            <td>{item?.message}</td>
+                            <td>
+                              {getFormatedDate(item?.created_at, "MM/DD/YYYY")}
+                            </td>
+                            <td>
+                              <button
+                                className="btn btn-secondary"
+                                onClick={() =>
+                                  deleteData(item.id, "LearnMoreList")
+                                }
+                              >
+                                <i
+                                  className="fa fa-trash-o"
+                                  aria-hidden="true"
+                                />
+                              </button>
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
                   <div className="text-right">
                     <p>
                       <b>
@@ -733,38 +765,40 @@ const GetInvolved = () => {
                   </p>
                 </div>
                 <div className="col-md-12">
-                  <table className="table">
-                    <thead>
-                      <tr>
-                        <th>Count</th>
-                        {/* <th>Name </th> */}
-                        <th>Email</th>
-                        {/* <th>City</th>
+                  <div className="table-responsive">
+                    <table className="table">
+                      <thead>
+                        <tr>
+                          <th>Count</th>
+                          {/* <th>Name </th> */}
+                          <th>Email</th>
+                          {/* <th>City</th>
                         <th>State</th> */}
-                        <th>Date</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {signUpList?.length &&
-                        signUpList.map((item, key) => (
-                          <tr key={key}>
-                            <td>{key + 1}</td>
-                            {/* <td>{item?.name}</td> */}
-                            <td>{item?.email}</td>
-                            {/* <td>{item?.city}</td>
+                          <th>Date</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {signUpList?.length &&
+                          signUpList.map((item, key) => (
+                            <tr key={key}>
+                              <td>{key + 1}</td>
+                              {/* <td>{item?.name}</td> */}
+                              <td>{item?.email}</td>
+                              {/* <td>{item?.city}</td>
                           <td>{item?.state}</td> */}
-                            <td>
-                              {item?.created_at
-                                ? getFormatedDate(
-                                    item?.created_at,
-                                    "MM/DD/YYYY"
-                                  )
-                                : ""}
-                            </td>
-                          </tr>
-                        ))}
-                    </tbody>
-                  </table>
+                              <td>
+                                {item?.created_at
+                                  ? getFormatedDate(
+                                      item?.created_at,
+                                      "MM/DD/YYYY"
+                                    )
+                                  : ""}
+                              </td>
+                            </tr>
+                          ))}
+                      </tbody>
+                    </table>
+                  </div>
                   <div className="text-right">
                     <p>
                       <b>Signup Total = {signUpList?.length}</b>

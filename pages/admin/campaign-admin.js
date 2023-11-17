@@ -1241,38 +1241,39 @@ const Compaign_page = () => {
                   </label>
                   <div className="row">
                     <div className="col-md-12">
-                      <table className="table">
-                        <thead>
-                          <tr>
-                            <th>Order</th>
-                            {/* <th>Hits</th> */}
-                            <th>Description</th>
-                            <th>Media Type </th>
-                            <th>Upload Date</th>
-                            <th>Action</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          {heathEquityData?.length &&
-                            heathEquityData?.map((item, index) => (
-                              <tr key={index}>
-                                <td>{sno++} </td>
-                                {/* <td>132</td> */}
-                                {item?.edit ? (
-                                  <>
-                                    <td>
-                                      <input
-                                        type="text"
-                                        name="description"
-                                        value={text1}
-                                        onChange={(e) =>
-                                          settext1(e?.target?.value)
-                                        }
-                                      />
-                                    </td>
+                      <div className="table-responsive">
+                        <table className="table">
+                          <thead>
+                            <tr>
+                              <th>Order</th>
+                              {/* <th>Hits</th> */}
+                              <th>Description</th>
+                              <th>Media Type </th>
+                              <th>Upload Date</th>
+                              <th>Action</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            {heathEquityData?.length &&
+                              heathEquityData?.map((item, index) => (
+                                <tr key={index}>
+                                  <td>{sno++} </td>
+                                  {/* <td>132</td> */}
+                                  {item?.edit ? (
+                                    <>
+                                      <td>
+                                        <input
+                                          type="text"
+                                          name="description"
+                                          value={text1}
+                                          onChange={(e) =>
+                                            settext1(e?.target?.value)
+                                          }
+                                        />
+                                      </td>
 
-                                    <td>
-                                      {/* {item?.media_type == "video" ? (
+                                      <td>
+                                        {/* {item?.media_type == "video" ? (
                                         <>
                                           <ReactPlayer
                                             url={upMediaPreview}
@@ -1304,137 +1305,140 @@ const Compaign_page = () => {
                                         </>
                                       )} */}
 
-                                      {/* <input
+                                        {/* <input
                                         type="file"
                                         onChange={(e) =>
                                           onchangeFile(e, "healthEquity")
                                         }
                                       /> */}
-                                      {toggleNewsYT ? (
-                                        <>
-                                          <div className="">
-                                            {newsupdateYTdata != ""
-                                              ? showVideo(newsupdateYTdata)
-                                              : showVideo("no-video")}
-                                          </div>
-                                          <div className="">
+                                        {toggleNewsYT ? (
+                                          <>
+                                            <div className="">
+                                              {newsupdateYTdata != ""
+                                                ? showVideo(newsupdateYTdata)
+                                                : showVideo("no-video")}
+                                            </div>
+                                            <div className="">
+                                              <input
+                                                className=""
+                                                type="text"
+                                                value={newsupdateYTdata}
+                                                onChange={(e) => {
+                                                  const inputValue =
+                                                    e.target.value.trim();
+                                                  setnewsupdateYTdata(
+                                                    inputValue
+                                                  );
+                                                }}
+                                              />
+                                              <span className="mbSpan">
+                                                Add YouTube video link.
+                                              </span>
+                                            </div>
+                                            <div className="">
+                                              <span
+                                                className=" custom-youtube-toggleLink"
+                                                onClick={() => {
+                                                  toggleNewsYT
+                                                    ? settoggleNewsYT(false)
+                                                    : (settoggleNewsYT(true),
+                                                      settoggleNewsYT(""));
+                                                }}
+                                              >
+                                                <BsFileEarmarkImage id="youTubelogo" />
+                                                Custom Video
+                                              </span>
+                                            </div>
+                                          </>
+                                        ) : (
+                                          <>
                                             <input
-                                              className=""
-                                              type="text"
-                                              value={newsupdateYTdata}
-                                              onChange={(e) => {
-                                                const inputValue =
-                                                  e.target.value.trim();
-                                                setnewsupdateYTdata(inputValue);
-                                              }}
+                                              type="file"
+                                              name="media"
+                                              onChange={(e) =>
+                                                onchangeFile(e, "healthEquity")
+                                              }
                                             />
-                                            <span className="mbSpan">
-                                              Add YouTube video link.
-                                            </span>
-                                          </div>
-                                          <div className="">
-                                            <span
-                                              className=" custom-youtube-toggleLink"
-                                              onClick={() => {
-                                                toggleNewsYT
-                                                  ? settoggleNewsYT(false)
-                                                  : (settoggleNewsYT(true),
-                                                    settoggleNewsYT(""));
-                                              }}
+                                            <div
+                                              style={{ width: "100%" }}
+                                              className=""
                                             >
-                                              <BsFileEarmarkImage id="youTubelogo" />
-                                              Custom Video
-                                            </span>
-                                          </div>
-                                        </>
+                                              <span
+                                                className="mx-4 custom-youtube-toggleLink"
+                                                onClick={() => {
+                                                  toggleNewsYT
+                                                    ? settoggleNewsYT(false)
+                                                    : settoggleNewsYT(true);
+                                                }}
+                                              >
+                                                <BsYoutube id="youTubelogo" />
+                                                YouTube Link
+                                              </span>
+                                            </div>
+                                          </>
+                                        )}
+                                      </td>
+                                      <td></td>
+                                    </>
+                                  ) : (
+                                    <>
+                                      <td>{item?.description}</td>
+                                      <td>{item?.media_type}</td>
+                                      <td>
+                                        {" "}
+                                        {getFormatedDate(
+                                          item?.created_at,
+                                          "MM/DD/YYYY"
+                                        )}{" "}
+                                      </td>
+                                    </>
+                                  )}
+                                  <td>
+                                    <button
+                                      className="btn btn-primary mx-1"
+                                      onClick={() =>
+                                        item?.edit
+                                          ? updateFormData(
+                                              item?.id,
+                                              "healthEquity"
+                                            )
+                                          : editFieldData(
+                                              item?.id,
+                                              index,
+                                              "healthEquity"
+                                            )
+                                      }
+                                    >
+                                      {item?.edit ? (
+                                        <i
+                                          className="fa fa-floppy-o"
+                                          aria-hidden="true"
+                                        />
                                       ) : (
-                                        <>
-                                          <input
-                                            type="file"
-                                            name="media"
-                                            onChange={(e) =>
-                                              onchangeFile(e, "healthEquity")
-                                            }
-                                          />
-                                          <div
-                                            style={{ width: "100%" }}
-                                            className=""
-                                          >
-                                            <span
-                                              className="mx-4 custom-youtube-toggleLink"
-                                              onClick={() => {
-                                                toggleNewsYT
-                                                  ? settoggleNewsYT(false)
-                                                  : settoggleNewsYT(true);
-                                              }}
-                                            >
-                                              <BsYoutube id="youTubelogo" />
-                                              YouTube Link
-                                            </span>
-                                          </div>
-                                        </>
+                                        <i
+                                          className="fa fa-pencil-square-o"
+                                          aria-hidden="true"
+                                        />
                                       )}
-                                    </td>
-                                    <td></td>
-                                  </>
-                                ) : (
-                                  <>
-                                    <td>{item?.description}</td>
-                                    <td>{item?.media_type}</td>
-                                    <td>
-                                      {" "}
-                                      {getFormatedDate(
-                                        item?.created_at,
-                                        "MM/DD/YYYY"
-                                      )}{" "}
-                                    </td>
-                                  </>
-                                )}
-                                <td>
-                                  <button
-                                    className="btn btn-primary mx-1"
-                                    onClick={() =>
-                                      item?.edit
-                                        ? updateFormData(
-                                            item?.id,
-                                            "healthEquity"
-                                          )
-                                        : editFieldData(
-                                            item?.id,
-                                            index,
-                                            "healthEquity"
-                                          )
-                                    }
-                                  >
-                                    {item?.edit ? (
-                                      <i
-                                        className="fa fa-floppy-o"
-                                        aria-hidden="true"
-                                      />
-                                    ) : (
-                                      <i
-                                        className="fa fa-pencil-square-o"
-                                        aria-hidden="true"
-                                      />
-                                    )}
-                                  </button>
+                                    </button>
 
-                                  <button
-                                    className="btn btn-secondary"
-                                    onClick={() =>
-                                      deleteData(item.id, "HealthEquity")
-                                    }
-                                  >
-                                    <i
-                                      className="fa fa-trash-o"
-                                      aria-hidden="true"
-                                    />
-                                  </button>
-                                </td>
-                              </tr>
-                            ))}
-                        </tbody>
-                      </table>
+                                    <button
+                                      className="btn btn-secondary"
+                                      onClick={() =>
+                                        deleteData(item.id, "HealthEquity")
+                                      }
+                                    >
+                                      <i
+                                        className="fa fa-trash-o"
+                                        aria-hidden="true"
+                                      />
+                                    </button>
+                                  </td>
+                                </tr>
+                              ))}
+                          </tbody>
+                        </table>
+                      </div>
 
                       <div className="container">
                         <div className="row">
@@ -1639,38 +1643,39 @@ const Compaign_page = () => {
                   </label>
                   <div className="row">
                     <div className="col-md-12">
-                      <table className="table">
-                        <thead>
-                          <tr>
-                            <th>Order</th>
-                            <th>Hits</th>
-                            <th>Description</th>
-                            <th>Media Type </th>
-                            <th>Upload Date</th>
-                            <th>Action</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          {educationEquityData?.length &&
-                            educationEquityData?.map((item, index) => (
-                              <tr key={index}>
-                                <td>{sno++} </td>
-                                <td>132</td>
-                                {item?.edit ? (
-                                  <>
-                                    <td>
-                                      <input
-                                        type="text"
-                                        name="description"
-                                        value={text3}
-                                        onChange={(e) =>
-                                          settext3(e?.target?.value)
-                                        }
-                                      />
-                                    </td>
+                      <div className="table-responsive">
+                        <table className="table">
+                          <thead>
+                            <tr>
+                              <th>Order</th>
+                              <th>Hits</th>
+                              <th>Description</th>
+                              <th>Media Type </th>
+                              <th>Upload Date</th>
+                              <th>Action</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            {educationEquityData?.length &&
+                              educationEquityData?.map((item, index) => (
+                                <tr key={index}>
+                                  <td>{sno++} </td>
+                                  <td>132</td>
+                                  {item?.edit ? (
+                                    <>
+                                      <td>
+                                        <input
+                                          type="text"
+                                          name="description"
+                                          value={text3}
+                                          onChange={(e) =>
+                                            settext3(e?.target?.value)
+                                          }
+                                        />
+                                      </td>
 
-                                    <td>
-                                      {/* <input
+                                      <td>
+                                        {/* <input
                                         type="file"
                                         onChange={(e) =>
                                           onchangeFile(e, "educationEquity")
@@ -1710,130 +1715,136 @@ const Compaign_page = () => {
                                           height={"150px"}
                                         />
                                       )} */}
-                                      {toggleEduYT ? (
-                                        <>
-                                          <div className="">
-                                            {updateYTdataEdu != ""
-                                              ? showVideo(updateYTdataEdu)
-                                              : showVideo("no-video")}
-                                          </div>
-                                          <div className="">
+                                        {toggleEduYT ? (
+                                          <>
+                                            <div className="">
+                                              {updateYTdataEdu != ""
+                                                ? showVideo(updateYTdataEdu)
+                                                : showVideo("no-video")}
+                                            </div>
+                                            <div className="">
+                                              <input
+                                                className=""
+                                                type="text"
+                                                value={updateYTdataEdu}
+                                                onChange={(e) => {
+                                                  const inputValue =
+                                                    e.target.value.trim();
+                                                  setupdateYTdataEdu(
+                                                    inputValue
+                                                  );
+                                                }}
+                                              />
+                                              <span className="mbSpan">
+                                                Add YouTube video link.
+                                              </span>
+                                            </div>
+                                            <div className="">
+                                              <span
+                                                className=" custom-youtube-toggleLink"
+                                                onClick={() => {
+                                                  toggleEduYT
+                                                    ? settoggleEduYT(false)
+                                                    : (settoggleEduYT(true),
+                                                      settoggleEduYT(""));
+                                                }}
+                                              >
+                                                <BsFileEarmarkImage id="youTubelogo" />
+                                                Custom Video
+                                              </span>
+                                            </div>
+                                          </>
+                                        ) : (
+                                          <>
                                             <input
-                                              className=""
-                                              type="text"
-                                              value={updateYTdataEdu}
-                                              onChange={(e) => {
-                                                const inputValue =
-                                                  e.target.value.trim();
-                                                setupdateYTdataEdu(inputValue);
-                                              }}
+                                              type="file"
+                                              onChange={(e) =>
+                                                onchangeFile(
+                                                  e,
+                                                  "educationEquity"
+                                                )
+                                              }
                                             />
-                                            <span className="mbSpan">
-                                              Add YouTube video link.
-                                            </span>
-                                          </div>
-                                          <div className="">
-                                            <span
-                                              className=" custom-youtube-toggleLink"
-                                              onClick={() => {
-                                                toggleEduYT
-                                                  ? settoggleEduYT(false)
-                                                  : (settoggleEduYT(true),
-                                                    settoggleEduYT(""));
-                                              }}
+                                            <div
+                                              style={{ width: "100%" }}
+                                              className=""
                                             >
-                                              <BsFileEarmarkImage id="youTubelogo" />
-                                              Custom Video
-                                            </span>
-                                          </div>
-                                        </>
+                                              <span
+                                                className="mx-4 custom-youtube-toggleLink"
+                                                onClick={() => {
+                                                  toggleEduYT
+                                                    ? settoggleEduYT(false)
+                                                    : settoggleEduYT(true);
+                                                }}
+                                              >
+                                                <BsYoutube id="youTubelogo" />
+                                                YouTube Link
+                                              </span>
+                                            </div>
+                                          </>
+                                        )}
+                                      </td>
+                                      <td></td>
+                                    </>
+                                  ) : (
+                                    <>
+                                      <td>{item?.description}</td>
+                                      <td>{item?.media_type}</td>
+                                      <td>
+                                        {" "}
+                                        {getFormatedDate(
+                                          item?.created_at,
+                                          "MM/DD/YYYY"
+                                        )}{" "}
+                                      </td>
+                                    </>
+                                  )}
+                                  <td>
+                                    <button
+                                      className="btn btn-primary mx-1"
+                                      onClick={() =>
+                                        item?.edit
+                                          ? updateFormData(
+                                              item?.id,
+                                              "EducationEquity"
+                                            )
+                                          : editFieldData(
+                                              item?.id,
+                                              index,
+                                              "EducationEquity"
+                                            )
+                                      }
+                                    >
+                                      {item?.edit ? (
+                                        <i
+                                          className="fa fa-floppy-o"
+                                          aria-hidden="true"
+                                        />
                                       ) : (
-                                        <>
-                                          <input
-                                            type="file"
-                                            onChange={(e) =>
-                                              onchangeFile(e, "educationEquity")
-                                            }
-                                          />
-                                          <div
-                                            style={{ width: "100%" }}
-                                            className=""
-                                          >
-                                            <span
-                                              className="mx-4 custom-youtube-toggleLink"
-                                              onClick={() => {
-                                                toggleEduYT
-                                                  ? settoggleEduYT(false)
-                                                  : settoggleEduYT(true);
-                                              }}
-                                            >
-                                              <BsYoutube id="youTubelogo" />
-                                              YouTube Link
-                                            </span>
-                                          </div>
-                                        </>
+                                        <i
+                                          className="fa fa-pencil-square-o"
+                                          aria-hidden="true"
+                                        />
                                       )}
-                                    </td>
-                                    <td></td>
-                                  </>
-                                ) : (
-                                  <>
-                                    <td>{item?.description}</td>
-                                    <td>{item?.media_type}</td>
-                                    <td>
-                                      {" "}
-                                      {getFormatedDate(
-                                        item?.created_at,
-                                        "MM/DD/YYYY"
-                                      )}{" "}
-                                    </td>
-                                  </>
-                                )}
-                                <td>
-                                  <button
-                                    className="btn btn-primary mx-1"
-                                    onClick={() =>
-                                      item?.edit
-                                        ? updateFormData(
-                                            item?.id,
-                                            "EducationEquity"
-                                          )
-                                        : editFieldData(
-                                            item?.id,
-                                            index,
-                                            "EducationEquity"
-                                          )
-                                    }
-                                  >
-                                    {item?.edit ? (
-                                      <i
-                                        className="fa fa-floppy-o"
-                                        aria-hidden="true"
-                                      />
-                                    ) : (
-                                      <i
-                                        className="fa fa-pencil-square-o"
-                                        aria-hidden="true"
-                                      />
-                                    )}
-                                  </button>
+                                    </button>
 
-                                  <button
-                                    className="btn btn-secondary"
-                                    onClick={() =>
-                                      deleteData(item.id, "EducationEquity")
-                                    }
-                                  >
-                                    <i
-                                      className="fa fa-trash-o"
-                                      aria-hidden="true"
-                                    />
-                                  </button>
-                                </td>
-                              </tr>
-                            ))}
-                        </tbody>
-                      </table>
+                                    <button
+                                      className="btn btn-secondary"
+                                      onClick={() =>
+                                        deleteData(item.id, "EducationEquity")
+                                      }
+                                    >
+                                      <i
+                                        className="fa fa-trash-o"
+                                        aria-hidden="true"
+                                      />
+                                    </button>
+                                  </td>
+                                </tr>
+                              ))}
+                          </tbody>
+                        </table>
+                      </div>
 
                       <div className="container">
                         <div className="row">
@@ -2039,38 +2050,39 @@ const Compaign_page = () => {
                   </label>
                   <div className="row">
                     <div className="col-md-12">
-                      <table className="table">
-                        <thead>
-                          <tr>
-                            <th>Order</th>
-                            <th>Hits</th>
-                            <th>Description</th>
-                            <th>Media Type </th>
-                            <th>Upload Date</th>
-                            <th>Action</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          {workforceEquityData?.length &&
-                            workforceEquityData?.map((item, index) => (
-                              <tr key={index}>
-                                <td>{sno++} </td>
-                                <td>132</td>
-                                {item?.edit ? (
-                                  <>
-                                    <td>
-                                      <input
-                                        type="text"
-                                        name="description"
-                                        value={text2}
-                                        onChange={(e) =>
-                                          settext2(e?.target?.value)
-                                        }
-                                      />
-                                    </td>
+                      <div className="table-responsive">
+                        <table className="table">
+                          <thead>
+                            <tr>
+                              <th>Order</th>
+                              <th>Hits</th>
+                              <th>Description</th>
+                              <th>Media Type </th>
+                              <th>Upload Date</th>
+                              <th>Action</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            {workforceEquityData?.length &&
+                              workforceEquityData?.map((item, index) => (
+                                <tr key={index}>
+                                  <td>{sno++} </td>
+                                  <td>132</td>
+                                  {item?.edit ? (
+                                    <>
+                                      <td>
+                                        <input
+                                          type="text"
+                                          name="description"
+                                          value={text2}
+                                          onChange={(e) =>
+                                            settext2(e?.target?.value)
+                                          }
+                                        />
+                                      </td>
 
-                                    <td>
-                                      {/* {item?.media_type == "video" ? (
+                                      <td>
+                                        {/* {item?.media_type == "video" ? (
                                         <>
                                           <ReactPlayer
                                             url={upMediaPreview2}
@@ -2102,7 +2114,7 @@ const Compaign_page = () => {
                                           height={"150px"}
                                         />
                                       )} */}
-                                      {/* <Image
+                                        {/* <Image
                                         src={
                                           upMediaPreview2
                                             ? upMediaPreview2
@@ -2111,136 +2123,142 @@ const Compaign_page = () => {
                                         width={80}
                                         height={80}
                                       /> */}
-                                      {/* <input
+                                        {/* <input
                                         type="file"
                                         onChange={(e) =>
                                           onchangeFile(e, "WorkforceEquity")
                                         }
                                       /> */}
-                                      {toggleWorkYT ? (
-                                        <>
-                                          <div className="">
-                                            {updateYTdataWork != ""
-                                              ? showVideo(updateYTdataWork)
-                                              : showVideo("no-video")}
-                                          </div>
-                                          <div className="">
+                                        {toggleWorkYT ? (
+                                          <>
+                                            <div className="">
+                                              {updateYTdataWork != ""
+                                                ? showVideo(updateYTdataWork)
+                                                : showVideo("no-video")}
+                                            </div>
+                                            <div className="">
+                                              <input
+                                                className=""
+                                                type="text"
+                                                value={updateYTdataWork}
+                                                onChange={(e) => {
+                                                  const inputValue =
+                                                    e.target.value.trim();
+                                                  setupdateYTdataWork(
+                                                    inputValue
+                                                  );
+                                                }}
+                                              />
+                                              <span className="mbSpan">
+                                                Add YouTube video link.
+                                              </span>
+                                            </div>
+                                            <div className="">
+                                              <span
+                                                className=" custom-youtube-toggleLink"
+                                                onClick={() => {
+                                                  toggleWorkYT
+                                                    ? settoggleWorkYT(false)
+                                                    : (settoggleWorkYT(true),
+                                                      settoggleWorkYT(""));
+                                                }}
+                                              >
+                                                <BsFileEarmarkImage id="youTubelogo" />
+                                                Custom Video
+                                              </span>
+                                            </div>
+                                          </>
+                                        ) : (
+                                          <>
                                             <input
-                                              className=""
-                                              type="text"
-                                              value={updateYTdataWork}
-                                              onChange={(e) => {
-                                                const inputValue =
-                                                  e.target.value.trim();
-                                                setupdateYTdataWork(inputValue);
-                                              }}
+                                              type="file"
+                                              onChange={(e) =>
+                                                onchangeFile(
+                                                  e,
+                                                  "WorkforceEquity"
+                                                )
+                                              }
                                             />
-                                            <span className="mbSpan">
-                                              Add YouTube video link.
-                                            </span>
-                                          </div>
-                                          <div className="">
-                                            <span
-                                              className=" custom-youtube-toggleLink"
-                                              onClick={() => {
-                                                toggleWorkYT
-                                                  ? settoggleWorkYT(false)
-                                                  : (settoggleWorkYT(true),
-                                                    settoggleWorkYT(""));
-                                              }}
+                                            <div
+                                              style={{ width: "100%" }}
+                                              className=""
                                             >
-                                              <BsFileEarmarkImage id="youTubelogo" />
-                                              Custom Video
-                                            </span>
-                                          </div>
-                                        </>
+                                              <span
+                                                className="mx-4 custom-youtube-toggleLink"
+                                                onClick={() => {
+                                                  toggleWorkYT
+                                                    ? settoggleWorkYT(false)
+                                                    : settoggleWorkYT(true);
+                                                }}
+                                              >
+                                                <BsYoutube id="youTubelogo" />
+                                                YouTube Link
+                                              </span>
+                                            </div>
+                                          </>
+                                        )}
+                                      </td>
+                                      <td></td>
+                                    </>
+                                  ) : (
+                                    <>
+                                      <td>{item?.description}</td>
+                                      <td>{item?.media_type}</td>
+                                      <td>
+                                        {" "}
+                                        {getFormatedDate(
+                                          item?.created_at,
+                                          "MM/DD/YYYY"
+                                        )}{" "}
+                                      </td>
+                                    </>
+                                  )}
+                                  <td>
+                                    <button
+                                      className="btn btn-primary mx-1"
+                                      onClick={() =>
+                                        item?.edit
+                                          ? updateFormData(
+                                              item?.id,
+                                              "WorkforceEquity"
+                                            )
+                                          : editFieldData(
+                                              item?.id,
+                                              index,
+                                              "WorkforceEquity"
+                                            )
+                                      }
+                                    >
+                                      {item?.edit ? (
+                                        <i
+                                          className="fa fa-floppy-o"
+                                          aria-hidden="true"
+                                        />
                                       ) : (
-                                        <>
-                                          <input
-                                            type="file"
-                                            onChange={(e) =>
-                                              onchangeFile(e, "WorkforceEquity")
-                                            }
-                                          />
-                                          <div
-                                            style={{ width: "100%" }}
-                                            className=""
-                                          >
-                                            <span
-                                              className="mx-4 custom-youtube-toggleLink"
-                                              onClick={() => {
-                                                toggleWorkYT
-                                                  ? settoggleWorkYT(false)
-                                                  : settoggleWorkYT(true);
-                                              }}
-                                            >
-                                              <BsYoutube id="youTubelogo" />
-                                              YouTube Link
-                                            </span>
-                                          </div>
-                                        </>
+                                        <i
+                                          className="fa fa-pencil-square-o"
+                                          aria-hidden="true"
+                                        />
                                       )}
-                                    </td>
-                                    <td></td>
-                                  </>
-                                ) : (
-                                  <>
-                                    <td>{item?.description}</td>
-                                    <td>{item?.media_type}</td>
-                                    <td>
-                                      {" "}
-                                      {getFormatedDate(
-                                        item?.created_at,
-                                        "MM/DD/YYYY"
-                                      )}{" "}
-                                    </td>
-                                  </>
-                                )}
-                                <td>
-                                  <button
-                                    className="btn btn-primary mx-1"
-                                    onClick={() =>
-                                      item?.edit
-                                        ? updateFormData(
-                                            item?.id,
-                                            "WorkforceEquity"
-                                          )
-                                        : editFieldData(
-                                            item?.id,
-                                            index,
-                                            "WorkforceEquity"
-                                          )
-                                    }
-                                  >
-                                    {item?.edit ? (
-                                      <i
-                                        className="fa fa-floppy-o"
-                                        aria-hidden="true"
-                                      />
-                                    ) : (
-                                      <i
-                                        className="fa fa-pencil-square-o"
-                                        aria-hidden="true"
-                                      />
-                                    )}
-                                  </button>
+                                    </button>
 
-                                  <button
-                                    className="btn btn-secondary"
-                                    onClick={() =>
-                                      deleteData(item.id, "WorkforceEquity")
-                                    }
-                                  >
-                                    <i
-                                      className="fa fa-trash-o"
-                                      aria-hidden="true"
-                                    />
-                                  </button>
-                                </td>
-                              </tr>
-                            ))}
-                        </tbody>
-                      </table>
+                                    <button
+                                      className="btn btn-secondary"
+                                      onClick={() =>
+                                        deleteData(item.id, "WorkforceEquity")
+                                      }
+                                    >
+                                      <i
+                                        className="fa fa-trash-o"
+                                        aria-hidden="true"
+                                      />
+                                    </button>
+                                  </td>
+                                </tr>
+                              ))}
+                          </tbody>
+                        </table>
+                      </div>
 
                       <div className="container">
                         <div className="row">
@@ -2446,38 +2464,39 @@ const Compaign_page = () => {
                   </label>
                   <div className="row">
                     <div className="col-md-12">
-                      <table className="table">
-                        <thead>
-                          <tr>
-                            <th>Order</th>
-                            <th>Hits</th>
-                            <th>Description</th>
-                            <th>Media Type </th>
-                            <th>Upload Date</th>
-                            <th>Action</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          {publicEquityData?.length &&
-                            publicEquityData?.map((item, index) => (
-                              <tr key={index}>
-                                <td>{sno++} </td>
-                                <td>132</td>
-                                {item?.edit ? (
-                                  <>
-                                    <td>
-                                      <input
-                                        type="text"
-                                        name="description"
-                                        value={text4}
-                                        onChange={(e) =>
-                                          settext4(e?.target?.value)
-                                        }
-                                      />
-                                    </td>
+                      <div className="table-responsive">
+                        <table className="table">
+                          <thead>
+                            <tr>
+                              <th>Order</th>
+                              <th>Hits</th>
+                              <th>Description</th>
+                              <th>Media Type </th>
+                              <th>Upload Date</th>
+                              <th>Action</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            {publicEquityData?.length &&
+                              publicEquityData?.map((item, index) => (
+                                <tr key={index}>
+                                  <td>{sno++} </td>
+                                  <td>132</td>
+                                  {item?.edit ? (
+                                    <>
+                                      <td>
+                                        <input
+                                          type="text"
+                                          name="description"
+                                          value={text4}
+                                          onChange={(e) =>
+                                            settext4(e?.target?.value)
+                                          }
+                                        />
+                                      </td>
 
-                                    <td>
-                                      {/* <Image
+                                      <td>
+                                        {/* <Image
                                         src={
                                           upMediaPreview4
                                             ? upMediaPreview4
@@ -2486,7 +2505,7 @@ const Compaign_page = () => {
                                         width={80}
                                         height={80}
                                       /> */}
-                                      {/* {item?.media_type == "video" ? (
+                                        {/* {item?.media_type == "video" ? (
                                         <>
                                           <ReactPlayer
                                             url={
@@ -2526,131 +2545,132 @@ const Compaign_page = () => {
                                           onchangeFile(e, "PublicEquity")
                                         }
                                       /> */}
-                                      {togglePublicYT ? (
-                                        <>
-                                          <div className="">
-                                            {updateYTdataPublic != ""
-                                              ? showVideo(updateYTdataPublic)
-                                              : showVideo("no-video")}
-                                          </div>
-                                          <div className="">
+                                        {togglePublicYT ? (
+                                          <>
+                                            <div className="">
+                                              {updateYTdataPublic != ""
+                                                ? showVideo(updateYTdataPublic)
+                                                : showVideo("no-video")}
+                                            </div>
+                                            <div className="">
+                                              <input
+                                                className=""
+                                                type="text"
+                                                value={updateYTdataPublic}
+                                                onChange={(e) => {
+                                                  const inputValue =
+                                                    e.target.value.trim();
+                                                  setupdateYTdataPublic(
+                                                    inputValue
+                                                  );
+                                                }}
+                                              />
+                                              <span className="mbSpan">
+                                                Add YouTube video link.
+                                              </span>
+                                            </div>
+                                            <div className="">
+                                              <span
+                                                className=" custom-youtube-toggleLink"
+                                                onClick={() => {
+                                                  togglePublicYT
+                                                    ? settogglePublicYT(false)
+                                                    : (settogglePublicYT(true),
+                                                      settogglePublicYT(""));
+                                                }}
+                                              >
+                                                <BsFileEarmarkImage id="youTubelogo" />
+                                                Custom Video
+                                              </span>
+                                            </div>
+                                          </>
+                                        ) : (
+                                          <>
                                             <input
-                                              className=""
-                                              type="text"
-                                              value={updateYTdataPublic}
-                                              onChange={(e) => {
-                                                const inputValue =
-                                                  e.target.value.trim();
-                                                setupdateYTdataPublic(
-                                                  inputValue
-                                                );
-                                              }}
+                                              type="file"
+                                              onChange={(e) =>
+                                                onchangeFile(e, "PublicEquity")
+                                              }
                                             />
-                                            <span className="mbSpan">
-                                              Add YouTube video link.
-                                            </span>
-                                          </div>
-                                          <div className="">
-                                            <span
-                                              className=" custom-youtube-toggleLink"
-                                              onClick={() => {
-                                                togglePublicYT
-                                                  ? settogglePublicYT(false)
-                                                  : (settogglePublicYT(true),
-                                                    settogglePublicYT(""));
-                                              }}
+                                            <div
+                                              style={{ width: "100%" }}
+                                              className=""
                                             >
-                                              <BsFileEarmarkImage id="youTubelogo" />
-                                              Custom Video
-                                            </span>
-                                          </div>
-                                        </>
+                                              <span
+                                                className="mx-4 custom-youtube-toggleLink"
+                                                onClick={() => {
+                                                  togglePublicYT
+                                                    ? settogglePublicYT(false)
+                                                    : settogglePublicYT(true);
+                                                }}
+                                              >
+                                                <BsYoutube id="youTubelogo" />
+                                                YouTube Link
+                                              </span>
+                                            </div>
+                                          </>
+                                        )}
+                                      </td>
+                                      <td></td>
+                                    </>
+                                  ) : (
+                                    <>
+                                      <td>{item?.description}</td>
+                                      <td>{item?.media_type}</td>
+                                      <td>
+                                        {getFormatedDate(
+                                          item?.created_at,
+                                          "MM/DD/YYYY"
+                                        )}
+                                      </td>
+                                    </>
+                                  )}
+                                  <td>
+                                    <button
+                                      className="btn btn-primary mx-1"
+                                      onClick={() =>
+                                        item?.edit
+                                          ? updateFormData(
+                                              item?.id,
+                                              "PublicEquity"
+                                            )
+                                          : editFieldData(
+                                              item?.id,
+                                              index,
+                                              "PublicEquity"
+                                            )
+                                      }
+                                    >
+                                      {item?.edit ? (
+                                        <i
+                                          className="fa fa-floppy-o"
+                                          aria-hidden="true"
+                                        />
                                       ) : (
-                                        <>
-                                          <input
-                                            type="file"
-                                            onChange={(e) =>
-                                              onchangeFile(e, "PublicEquity")
-                                            }
-                                          />
-                                          <div
-                                            style={{ width: "100%" }}
-                                            className=""
-                                          >
-                                            <span
-                                              className="mx-4 custom-youtube-toggleLink"
-                                              onClick={() => {
-                                                togglePublicYT
-                                                  ? settogglePublicYT(false)
-                                                  : settogglePublicYT(true);
-                                              }}
-                                            >
-                                              <BsYoutube id="youTubelogo" />
-                                              YouTube Link
-                                            </span>
-                                          </div>
-                                        </>
+                                        <i
+                                          className="fa fa-pencil-square-o"
+                                          aria-hidden="true"
+                                        />
                                       )}
-                                    </td>
-                                    <td></td>
-                                  </>
-                                ) : (
-                                  <>
-                                    <td>{item?.description}</td>
-                                    <td>{item?.media_type}</td>
-                                    <td>
-                                      {getFormatedDate(
-                                        item?.created_at,
-                                        "MM/DD/YYYY"
-                                      )}
-                                    </td>
-                                  </>
-                                )}
-                                <td>
-                                  <button
-                                    className="btn btn-primary mx-1"
-                                    onClick={() =>
-                                      item?.edit
-                                        ? updateFormData(
-                                            item?.id,
-                                            "PublicEquity"
-                                          )
-                                        : editFieldData(
-                                            item?.id,
-                                            index,
-                                            "PublicEquity"
-                                          )
-                                    }
-                                  >
-                                    {item?.edit ? (
-                                      <i
-                                        className="fa fa-floppy-o"
-                                        aria-hidden="true"
-                                      />
-                                    ) : (
-                                      <i
-                                        className="fa fa-pencil-square-o"
-                                        aria-hidden="true"
-                                      />
-                                    )}
-                                  </button>
+                                    </button>
 
-                                  <button
-                                    className="btn btn-secondary"
-                                    onClick={() =>
-                                      deleteData(item.id, "PublicEquity")
-                                    }
-                                  >
-                                    <i
-                                      className="fa fa-trash-o"
-                                      aria-hidden="true"
-                                    />
-                                  </button>
-                                </td>
-                              </tr>
-                            ))}
-                        </tbody>
-                      </table>
+                                    <button
+                                      className="btn btn-secondary"
+                                      onClick={() =>
+                                        deleteData(item.id, "PublicEquity")
+                                      }
+                                    >
+                                      <i
+                                        className="fa fa-trash-o"
+                                        aria-hidden="true"
+                                      />
+                                    </button>
+                                  </td>
+                                </tr>
+                              ))}
+                          </tbody>
+                        </table>
+                      </div>
 
                       <div className="container">
                         <div className="row">

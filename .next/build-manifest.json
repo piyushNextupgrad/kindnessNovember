@@ -26,11 +26,6 @@
       "static/chunks/webpack.js",
       "static/chunks/main.js",
       "static/chunks/pages/admin/involved.js"
-    ],
-    "/get-involved": [
-      "static/chunks/webpack.js",
-      "static/chunks/main.js",
-      "static/chunks/pages/get-involved.js"
     ]
   },
   "ampFirstPages": []

@@ -820,115 +820,117 @@ const EventPage = () => {
               <div className="row">
                 <p>Event Category List</p>
                 <div className="col-md-12">
-                  <table className="table">
-                    <thead>
-                      <tr>
-                        <th>Order</th>
-                        <th>Event Category Type</th>
-                        <th>Description</th>
-                        <th>Active</th>
-                        <th>Action</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {adminMediaData?.length > 0
-                        ? adminMediaData?.map((item, index) => (
-                            <tr key={index}>
-                              <td>{index + 1} </td>
-                              {item?.edit ? (
-                                <>
-                                  <td>
-                                    <input
-                                      type="text"
-                                      name="total"
-                                      value={text}
-                                      onChange={(e) =>
-                                        settext(e?.target?.value)
-                                      }
-                                    />
-                                  </td>
-                                  <td>
-                                    <input
-                                      type="text"
-                                      name="Service"
-                                      value={upDesc}
-                                      onChange={(e) =>
-                                        setupDesc(e?.target?.value)
-                                      }
-                                    />
-                                  </td>
+                  <div className="table-responsive">
+                    <table className="table">
+                      <thead>
+                        <tr>
+                          <th>Order</th>
+                          <th>Event Category Type</th>
+                          <th>Description</th>
+                          <th>Active</th>
+                          <th>Action</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {adminMediaData?.length > 0
+                          ? adminMediaData?.map((item, index) => (
+                              <tr key={index}>
+                                <td>{index + 1} </td>
+                                {item?.edit ? (
+                                  <>
+                                    <td>
+                                      <input
+                                        type="text"
+                                        name="total"
+                                        value={text}
+                                        onChange={(e) =>
+                                          settext(e?.target?.value)
+                                        }
+                                      />
+                                    </td>
+                                    <td>
+                                      <input
+                                        type="text"
+                                        name="Service"
+                                        value={upDesc}
+                                        onChange={(e) =>
+                                          setupDesc(e?.target?.value)
+                                        }
+                                      />
+                                    </td>
 
-                                  <td>
-                                    <input
-                                      type="checkbox"
-                                      name="status"
-                                      checked={updateActive}
-                                      id="active"
-                                      onChange={(e) =>
-                                        setUpdateActive(e?.target?.checked)
-                                      }
-                                    />
-                                    {/* <span className="btn ">
+                                    <td>
+                                      <input
+                                        type="checkbox"
+                                        name="status"
+                                        checked={updateActive}
+                                        id="active"
+                                        onChange={(e) =>
+                                          setUpdateActive(e?.target?.checked)
+                                        }
+                                      />
+                                      {/* <span className="btn ">
                                       {item?.active ? "Yes" : "No"}
                                     </span> */}
-                                  </td>
-                                </>
-                              ) : (
-                                <>
-                                  <td>{item?.event_category}</td>
-                                  <td>{item?.event_description}</td>
-                                  <td>
-                                    {parseInt(item?.active) ? "Yes" : "No"}
-                                  </td>
-                                </>
-                              )}
+                                    </td>
+                                  </>
+                                ) : (
+                                  <>
+                                    <td>{item?.event_category}</td>
+                                    <td>{item?.event_description}</td>
+                                    <td>
+                                      {parseInt(item?.active) ? "Yes" : "No"}
+                                    </td>
+                                  </>
+                                )}
 
-                              <td>
-                                <button
-                                  className="btn btn-primary mx-1"
-                                  onClick={() =>
-                                    item?.edit
-                                      ? updateFormData(
-                                          item?.id,
-                                          "EventCategoryList"
-                                        )
-                                      : editFieldData(
-                                          item?.id,
-                                          index,
-                                          "EventCategoryList"
-                                        )
-                                  }
-                                >
-                                  {item?.edit ? (
+                                <td>
+                                  <button
+                                    className="btn btn-primary mx-1"
+                                    onClick={() =>
+                                      item?.edit
+                                        ? updateFormData(
+                                            item?.id,
+                                            "EventCategoryList"
+                                          )
+                                        : editFieldData(
+                                            item?.id,
+                                            index,
+                                            "EventCategoryList"
+                                          )
+                                    }
+                                  >
+                                    {item?.edit ? (
+                                      <i
+                                        className="fa fa-floppy-o"
+                                        aria-hidden="true"
+                                      />
+                                    ) : (
+                                      <i
+                                        className="fa fa-pencil-square-o"
+                                        aria-hidden="true"
+                                      />
+                                    )}
+                                  </button>
+
+                                  <button
+                                    className="btn btn-secondary"
+                                    onClick={() =>
+                                      deleteData(item.id, "EventCategoryList")
+                                    }
+                                  >
                                     <i
-                                      className="fa fa-floppy-o"
+                                      className="fa fa-trash-o"
                                       aria-hidden="true"
                                     />
-                                  ) : (
-                                    <i
-                                      className="fa fa-pencil-square-o"
-                                      aria-hidden="true"
-                                    />
-                                  )}
-                                </button>
-
-                                <button
-                                  className="btn btn-secondary"
-                                  onClick={() =>
-                                    deleteData(item.id, "EventCategoryList")
-                                  }
-                                >
-                                  <i
-                                    className="fa fa-trash-o"
-                                    aria-hidden="true"
-                                  />
-                                </button>
-                              </td>
-                            </tr>
-                          ))
-                        : null}
-                    </tbody>
-                  </table>
+                                  </button>
+                                </td>
+                              </tr>
+                            ))
+                          : null}
+                      </tbody>
+                    </table>
+                  </div>
                 </div>
                 <div className="container">
                   <div className="row">
@@ -1163,122 +1165,131 @@ const EventPage = () => {
                 <div className="row">
                   <div className="col-md-12">
                     <p>Event Image List</p>
-                    <table className="table">
-                      <thead>
-                        <tr>
-                          <th>Order</th>
-                          <th>Hits</th>
-                          <th>Title</th>
-                          <th>Media Type</th>
-                          <th>Upload Date</th>
-                          <th>Active</th>
-                          <th>Action</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {eventImageList?.map((item, index) => (
-                          <tr key={index}>
-                            <td>{index + 1}</td>
-                            <td>{item?.hits}</td>
-                            {item?.edit ? (
-                              <>
-                                <td>
-                                  <input
-                                    type="text"
-                                    value={text2}
-                                    onChange={(e) => settext2(e?.target?.value)}
-                                  />
-                                </td>
-                                <td>
-                                  <Image
-                                    src={
-                                      upMediaPreview2
-                                        ? upMediaPreview2
-                                        : "/no-img.jpg"
-                                    }
-                                    width={80}
-                                    height={80}
-                                  />
-                                  <input
-                                    type="file"
-                                    onChange={(e) =>
-                                      onchangeFile(e, "EventImageList")
-                                    }
-                                  />
-                                </td>
-                                <td></td>
-                                <td>
-                                  <input
-                                    type="checkbox"
-                                    name="status"
-                                    checked={updateActive2}
-                                    id="active"
-                                    onChange={(e) =>
-                                      setUpdateActive2(e?.target?.checked)
-                                    }
-                                  />
-                                  {/* <span className="btn ">
+                    <div className="table-responsive">
+                      <table className="table">
+                        <thead>
+                          <tr>
+                            <th>Order</th>
+                            <th>Hits</th>
+                            <th>Title</th>
+                            <th>Media Type</th>
+                            <th>Upload Date</th>
+                            <th>Active</th>
+                            <th>Action</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {eventImageList?.map((item, index) => (
+                            <tr key={index}>
+                              <td>{index + 1}</td>
+                              <td>{item?.hits}</td>
+                              {item?.edit ? (
+                                <>
+                                  <td>
+                                    <input
+                                      type="text"
+                                      value={text2}
+                                      onChange={(e) =>
+                                        settext2(e?.target?.value)
+                                      }
+                                    />
+                                  </td>
+                                  <td>
+                                    <Image
+                                      src={
+                                        upMediaPreview2
+                                          ? upMediaPreview2
+                                          : "/no-img.jpg"
+                                      }
+                                      width={80}
+                                      height={80}
+                                    />
+                                    <input
+                                      type="file"
+                                      onChange={(e) =>
+                                        onchangeFile(e, "EventImageList")
+                                      }
+                                    />
+                                  </td>
+                                  <td></td>
+                                  <td>
+                                    <input
+                                      type="checkbox"
+                                      name="status"
+                                      checked={updateActive2}
+                                      id="active"
+                                      onChange={(e) =>
+                                        setUpdateActive2(e?.target?.checked)
+                                      }
+                                    />
+                                    {/* <span className="btn ">
                                       {item?.active ? "Yes" : "No"}
                                     </span> */}
-                                </td>
-                              </>
-                            ) : (
-                              <>
-                                <td>{item?.event_title}</td>
-                                <td>{item?.event_media}</td>
-                                <td>
-                                  {getFormatedDate(
-                                    item?.updated_at,
-                                    "MM/DD/YYYY"
+                                  </td>
+                                </>
+                              ) : (
+                                <>
+                                  <td>{item?.event_title}</td>
+                                  <td>{item?.event_media}</td>
+                                  <td>
+                                    {getFormatedDate(
+                                      item?.updated_at,
+                                      "MM/DD/YYYY"
+                                    )}
+                                  </td>
+
+                                  <td>
+                                    {parseInt(item?.active) ? "Yes" : "No"}
+                                  </td>
+                                </>
+                              )}
+
+                              <td>
+                                <button
+                                  className="btn btn-primary mx-1"
+                                  onClick={() =>
+                                    item?.edit
+                                      ? updateFormData(
+                                          item?.id,
+                                          "EventImageList"
+                                        )
+                                      : editFieldData(
+                                          item?.id,
+                                          index,
+                                          "EventImageList"
+                                        )
+                                  }
+                                >
+                                  {item?.edit ? (
+                                    <i
+                                      className="fa fa-floppy-o"
+                                      aria-hidden="true"
+                                    />
+                                  ) : (
+                                    <i
+                                      className="fa fa-pencil-square-o"
+                                      aria-hidden="true"
+                                    />
                                   )}
-                                </td>
+                                </button>
 
-                                <td>{parseInt(item?.active) ? "Yes" : "No"}</td>
-                              </>
-                            )}
-
-                            <td>
-                              <button
-                                className="btn btn-primary mx-1"
-                                onClick={() =>
-                                  item?.edit
-                                    ? updateFormData(item?.id, "EventImageList")
-                                    : editFieldData(
-                                        item?.id,
-                                        index,
-                                        "EventImageList"
-                                      )
-                                }
-                              >
-                                {item?.edit ? (
+                                <button
+                                  className="btn btn-secondary"
+                                  onClick={() =>
+                                    deleteData(item.id, "EventImageList")
+                                  }
+                                >
                                   <i
-                                    className="fa fa-floppy-o"
+                                    className="fa fa-trash-o"
                                     aria-hidden="true"
                                   />
-                                ) : (
-                                  <i
-                                    className="fa fa-pencil-square-o"
-                                    aria-hidden="true"
-                                  />
-                                )}
-                              </button>
-
-                              <button
-                                className="btn btn-secondary"
-                                onClick={() =>
-                                  deleteData(item.id, "EventImageList")
-                                }
-                              >
-                                <i
-                                  className="fa fa-trash-o"
-                                  aria-hidden="true"
-                                />
-                              </button>
-                            </td>
-                          </tr>
-                        ))}
-                      </tbody>
-                    </table>
+                                </button>
+                              </td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    </div>
                   </div>
                 </div>
 
@@ -1390,180 +1401,192 @@ const EventPage = () => {
 
               <div className="row">
                 <div className="col-md-12">
-                  <table className="table">
-                    <thead>
-                      <tr>
-                        <th>Item</th>
-                        <th>Hits</th>
-                        <th>Event Title</th>
-                        <th># of RSVP</th>
-                        <th>Date</th>
-                        <th>Description</th>
-                        <th>Address</th>
-                        <th>Media</th>
-                        <th>Active</th>
-                        <th>Action</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <>
-                        {eventList?.length
-                          ? console.log("EventList", eventList)
-                          : null}
-                      </>
-                      {eventList?.length &&
-                        eventList?.map((item, index) => (
-                          <tr key={index}>
-                            <td>{index + 1} </td>
-                            <td>{item.hits}</td>
-                            {item?.edit ? (
-                              <>
-                                <td>
-                                  <input
-                                    type="text"
-                                    value={editEventTitle}
-                                    onChange={(e) =>
-                                      setEditEventTitle(e?.target?.value)
-                                    }
-                                  />
-                                </td>
-                                <td>0</td>
-                                <td>
-                                  <DatePicker
-                                    selected={editStartDate}
-                                    onChange={(date) => setEditStartDate(date)}
-                                  />
-                                </td>
-                                <td>
-                                  <input
-                                    type="text"
-                                    value={editEventDescription3}
-                                    onChange={(e) =>
-                                      setEditEventDescription3(e?.target?.value)
-                                    }
-                                  />
-                                </td>
-                                <td>
-                                  <input
-                                    type="text"
-                                    value={EditAddress}
-                                    onChange={(e) =>
-                                      setEditAddress(e?.target?.value)
-                                    }
-                                  />
-                                </td>
-                                <td>
-                                  <Image
-                                    src={
-                                      process.env.SITE_URL + item.event_media
-                                    }
-                                    width={100}
-                                    height={80}
-                                  ></Image>
-                                  <input
-                                    type="file"
-                                    onChange={(e) => {
-                                      const img = e?.target?.files[0];
-
-                                      const fileName = img.name.toLowerCase();
-
-                                      // Check if the file has an image extension
-                                      if (
-                                        /\.(jpg|jpeg|png|gif|webp)$/.test(
-                                          fileName
+                  <div className="table-responsive">
+                    <table className="table">
+                      <thead>
+                        <tr>
+                          <th>Item</th>
+                          <th>Hits</th>
+                          <th>Event Title</th>
+                          <th># of RSVP</th>
+                          <th>Date</th>
+                          <th>Description</th>
+                          <th>Address</th>
+                          <th>Media</th>
+                          <th>Active</th>
+                          <th>Action</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <>
+                          {eventList?.length
+                            ? console.log("EventList", eventList)
+                            : null}
+                        </>
+                        {eventList?.length &&
+                          eventList?.map((item, index) => (
+                            <tr key={index}>
+                              <td>{index + 1} </td>
+                              <td>{item.hits}</td>
+                              {item?.edit ? (
+                                <>
+                                  <td>
+                                    <input
+                                      type="text"
+                                      value={editEventTitle}
+                                      onChange={(e) =>
+                                        setEditEventTitle(e?.target?.value)
+                                      }
+                                    />
+                                  </td>
+                                  <td>0</td>
+                                  <td>
+                                    <DatePicker
+                                      selected={editStartDate}
+                                      onChange={(date) =>
+                                        setEditStartDate(date)
+                                      }
+                                    />
+                                  </td>
+                                  <td>
+                                    <input
+                                      type="text"
+                                      value={editEventDescription3}
+                                      onChange={(e) =>
+                                        setEditEventDescription3(
+                                          e?.target?.value
                                         )
-                                      ) {
-                                        if (img.size > 6 * 1024 * 1024) {
+                                      }
+                                    />
+                                  </td>
+                                  <td>
+                                    <input
+                                      type="text"
+                                      value={EditAddress}
+                                      onChange={(e) =>
+                                        setEditAddress(e?.target?.value)
+                                      }
+                                    />
+                                  </td>
+                                  <td>
+                                    <Image
+                                      src={
+                                        process.env.SITE_URL + item.event_media
+                                      }
+                                      width={100}
+                                      height={80}
+                                    ></Image>
+                                    <input
+                                      type="file"
+                                      onChange={(e) => {
+                                        const img = e?.target?.files[0];
+
+                                        const fileName = img.name.toLowerCase();
+
+                                        // Check if the file has an image extension
+                                        if (
+                                          /\.(jpg|jpeg|png|gif|webp)$/.test(
+                                            fileName
+                                          )
+                                        ) {
+                                          if (img.size > 6 * 1024 * 1024) {
+                                            e.target.value = null;
+                                            showNotification(
+                                              "Image size exceeds 6MB. Please choose a smaller image.",
+                                              "Error"
+                                            );
+                                            return;
+                                          } else {
+                                            setEventEditMedia(
+                                              e.target.files[0]
+                                            );
+                                          }
+                                        } else if (
+                                          /\.(pdf|doc|docx|xls|xlsx|ppt|pptx|txt|csv|html|js|jsx|php|mp4|mov|avi|wmv|mkv|bmp|flv|tiff|eps)$/.test(
+                                            fileName
+                                          )
+                                        ) {
                                           e.target.value = null;
                                           showNotification(
-                                            "Image size exceeds 6MB. Please choose a smaller image.",
+                                            "Unsupported File type.",
                                             "Error"
                                           );
                                           return;
-                                        } else {
-                                          setEventEditMedia(e.target.files[0]);
                                         }
-                                      } else if (
-                                        /\.(pdf|doc|docx|xls|xlsx|ppt|pptx|txt|csv|html|js|jsx|php|mp4|mov|avi|wmv|mkv|bmp|flv|tiff|eps)$/.test(
-                                          fileName
-                                        )
-                                      ) {
-                                        e.target.value = null;
-                                        showNotification(
-                                          "Unsupported File type.",
-                                          "Error"
-                                        );
-                                        return;
+                                      }}
+                                    />
+                                  </td>
+
+                                  <td>
+                                    <input
+                                      type="checkbox"
+                                      id="flexCheckDefault"
+                                      checked={editActive3}
+                                      onChange={(e) =>
+                                        setEditActive3(e.target.checked)
                                       }
-                                    }}
-                                  />
-                                </td>
+                                    />
+                                  </td>
+                                </>
+                              ) : (
+                                <>
+                                  <td>{item?.event_title}</td>
+                                  <td>0</td>
+                                  <td>
+                                    {getFormatedDate(item?.date, "MM/DD/YYYY")}
+                                  </td>
+                                  <td>{item?.event_description}</td>
+                                  <td>{item?.location_address}</td>
+                                  <td>{item?.media_type}</td>
+                                  <td>
+                                    {parseInt(item?.active) ? "Yes" : "No"}
+                                  </td>
+                                </>
+                              )}
 
-                                <td>
-                                  <input
-                                    type="checkbox"
-                                    id="flexCheckDefault"
-                                    checked={editActive3}
-                                    onChange={(e) =>
-                                      setEditActive3(e.target.checked)
-                                    }
-                                  />
-                                </td>
-                              </>
-                            ) : (
-                              <>
-                                <td>{item?.event_title}</td>
-                                <td>0</td>
-                                <td>
-                                  {getFormatedDate(item?.date, "MM/DD/YYYY")}
-                                </td>
-                                <td>{item?.event_description}</td>
-                                <td>{item?.location_address}</td>
-                                <td>{item?.media_type}</td>
-                                <td>{parseInt(item?.active) ? "Yes" : "No"}</td>
-                              </>
-                            )}
+                              <td>
+                                <button
+                                  className="btn btn-primary mx-1"
+                                  onClick={() =>
+                                    item?.edit
+                                      ? updateFormData(item?.id, "EventList")
+                                      : editFieldData(
+                                          item?.id,
+                                          index,
+                                          "EventList"
+                                        )
+                                  }
+                                >
+                                  {item?.edit ? (
+                                    <i
+                                      className="fa fa-floppy-o"
+                                      aria-hidden="true"
+                                    />
+                                  ) : (
+                                    <i
+                                      className="fa fa-pencil-square-o"
+                                      aria-hidden="true"
+                                    />
+                                  )}
+                                </button>
 
-                            <td>
-                              <button
-                                className="btn btn-primary mx-1"
-                                onClick={() =>
-                                  item?.edit
-                                    ? updateFormData(item?.id, "EventList")
-                                    : editFieldData(
-                                        item?.id,
-                                        index,
-                                        "EventList"
-                                      )
-                                }
-                              >
-                                {item?.edit ? (
+                                <button
+                                  className="btn btn-secondary"
+                                  onClick={() =>
+                                    deleteData(item.id, "EventList")
+                                  }
+                                >
                                   <i
-                                    className="fa fa-floppy-o"
+                                    className="fa fa-trash-o"
                                     aria-hidden="true"
                                   />
-                                ) : (
-                                  <i
-                                    className="fa fa-pencil-square-o"
-                                    aria-hidden="true"
-                                  />
-                                )}
-                              </button>
-
-                              <button
-                                className="btn btn-secondary"
-                                onClick={() => deleteData(item.id, "EventList")}
-                              >
-                                <i
-                                  className="fa fa-trash-o"
-                                  aria-hidden="true"
-                                />
-                              </button>
-                            </td>
-                          </tr>
-                        ))}
-                    </tbody>
-                  </table>
+                                </button>
+                              </td>
+                            </tr>
+                          ))}
+                      </tbody>
+                    </table>
+                  </div>
                 </div>
               </div>
 
@@ -1871,32 +1894,34 @@ const EventPage = () => {
                         </span>
                         <span className="mx-3 "></span>
                       </span>
-                      <table className="table">
-                        <thead>
-                          <tr>
-                            <th>Count</th>
-                            <th>Name</th>
-                            <th>Email</th>
-                            <th>City</th>
-                            <th>State</th>
-                            <th>RSVP Date</th>
-                          </tr>
-                        </thead>
-                        {item.user_data.map((data, key2) => (
-                          <>
-                            <tbody>
-                              <tr>
-                                <td>{key2 + 1} </td>
-                                <td>{data.user_name}</td>
-                                <td>{data.user_email}</td>
-                                <td>{data.city}</td>
-                                <td>{data.state}</td>
-                                <td>{data.created_at}</td>
-                              </tr>
-                            </tbody>
-                          </>
-                        ))}
-                      </table>
+                      <div className="table-responsive">
+                        <table className="table">
+                          <thead>
+                            <tr>
+                              <th>Count</th>
+                              <th>Name</th>
+                              <th>Email</th>
+                              <th>City</th>
+                              <th>State</th>
+                              <th>RSVP Date</th>
+                            </tr>
+                          </thead>
+                          {item.user_data.map((data, key2) => (
+                            <>
+                              <tbody>
+                                <tr>
+                                  <td>{key2 + 1} </td>
+                                  <td>{data.user_name}</td>
+                                  <td>{data.user_email}</td>
+                                  <td>{data.city}</td>
+                                  <td>{data.state}</td>
+                                  <td>{data.created_at}</td>
+                                </tr>
+                              </tbody>
+                            </>
+                          ))}
+                        </table>
+                      </div>
                     </span>
                   ))}
 

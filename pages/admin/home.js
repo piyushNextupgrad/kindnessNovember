@@ -1619,150 +1619,156 @@ const Home = () => {
               <div className="container">
                 <div className="row">
                   <div className="col-md-12">
-                    <table className="table">
-                      <thead>
-                        <tr>
-                          <th>Order</th>
-                          <th>Total</th>
-                          <th>Service</th>
-                          <th>Impact Year </th>
-                          <th>Active</th>
-                          <th>Action</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {descriptionAccomplishment?.length
-                          ? descriptionAccomplishment?.map((item, index) => {
-                              return (
-                                <tr key={item?.id + index}>
-                                  {item?.edit ? (
-                                    <>
-                                      <td>
-                                        <input
-                                          type="number"
-                                          name="order"
-                                          value={updateOrder}
-                                          onChange={(e) =>
-                                            setUpdateOrder(
-                                              checkIsNumber(e?.target?.value)
-                                                ? e?.target?.value
-                                                : ""
-                                            )
-                                          }
-                                        />
-                                      </td>
+                    <div className="table-responsive">
+                      <table className="table">
+                        <thead>
+                          <tr>
+                            <th>Order</th>
+                            <th>Total</th>
+                            <th>Service</th>
+                            <th>Impact Year </th>
+                            <th>Active</th>
+                            <th>Action</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {descriptionAccomplishment?.length
+                            ? descriptionAccomplishment?.map((item, index) => {
+                                return (
+                                  <tr key={item?.id + index}>
+                                    {item?.edit ? (
+                                      <>
+                                        <td>
+                                          <input
+                                            type="number"
+                                            name="order"
+                                            value={updateOrder}
+                                            onChange={(e) =>
+                                              setUpdateOrder(
+                                                checkIsNumber(e?.target?.value)
+                                                  ? e?.target?.value
+                                                  : ""
+                                              )
+                                            }
+                                          />
+                                        </td>
 
-                                      <td>
-                                        <input
-                                          type="text"
-                                          name="total"
-                                          value={editDesTotal}
-                                          onChange={(e) =>
-                                            setEditDesTotal(e?.target?.value)
-                                          }
-                                        />
-                                      </td>
-                                      <td>
-                                        <input
-                                          type="text"
-                                          name="Service"
-                                          value={editDesService}
-                                          onChange={(e) =>
-                                            setEditDesService(e?.target?.value)
-                                          }
-                                        />
-                                      </td>
-                                      <td>
-                                        <input
-                                          type="number"
-                                          name="year"
-                                          value={editDesYear}
-                                          onChange={(e) =>
-                                            setEditDesYear(e?.target?.value)
-                                          }
-                                        />
-                                      </td>
-                                      <td>
-                                        <input
-                                          type="checkbox"
-                                          name="status"
-                                          checked={editDesActive}
-                                          id="active"
-                                          onChange={(e) =>
-                                            setEditDesActive(e?.target?.checked)
-                                          }
-                                        />
-                                        {/* <span className="btn ">
+                                        <td>
+                                          <input
+                                            type="text"
+                                            name="total"
+                                            value={editDesTotal}
+                                            onChange={(e) =>
+                                              setEditDesTotal(e?.target?.value)
+                                            }
+                                          />
+                                        </td>
+                                        <td>
+                                          <input
+                                            type="text"
+                                            name="Service"
+                                            value={editDesService}
+                                            onChange={(e) =>
+                                              setEditDesService(
+                                                e?.target?.value
+                                              )
+                                            }
+                                          />
+                                        </td>
+                                        <td>
+                                          <input
+                                            type="number"
+                                            name="year"
+                                            value={editDesYear}
+                                            onChange={(e) =>
+                                              setEditDesYear(e?.target?.value)
+                                            }
+                                          />
+                                        </td>
+                                        <td>
+                                          <input
+                                            type="checkbox"
+                                            name="status"
+                                            checked={editDesActive}
+                                            id="active"
+                                            onChange={(e) =>
+                                              setEditDesActive(
+                                                e?.target?.checked
+                                              )
+                                            }
+                                          />
+                                          {/* <span className="btn ">
                                       {item?.active ? "Yes" : "No"}
                                     </span> */}
-                                      </td>
-                                    </>
-                                  ) : (
-                                    <>
-                                      <td>{item?.order_in_slider}</td>
-                                      <td>{item?.column_1}+ </td>
-                                      <td>{item?.column_2}</td>
-                                      <td>{item?.impactYear}</td>
-                                      <td>
-                                        <span className="btn ">
-                                          {parseInt(item?.active)
-                                            ? "Yes"
-                                            : "No"}
-                                        </span>
-                                      </td>
-                                    </>
-                                  )}
+                                        </td>
+                                      </>
+                                    ) : (
+                                      <>
+                                        <td>{item?.order_in_slider}</td>
+                                        <td>{item?.column_1}+ </td>
+                                        <td>{item?.column_2}</td>
+                                        <td>{item?.impactYear}</td>
+                                        <td>
+                                          <span className="btn ">
+                                            {parseInt(item?.active)
+                                              ? "Yes"
+                                              : "No"}
+                                          </span>
+                                        </td>
+                                      </>
+                                    )}
 
-                                  <td>
-                                    <button
-                                      className="btn btn-primary mx-1"
-                                      onClick={() =>
-                                        item?.edit
-                                          ? updateFormData(
-                                              item?.id,
-                                              "DescriptionAccomplishment"
-                                            )
-                                          : editFieldData(
-                                              item?.id,
-                                              index,
-                                              "DescriptionAccomplishment"
-                                            )
-                                      }
-                                    >
-                                      {item?.edit ? (
+                                    <td>
+                                      <button
+                                        className="btn btn-primary mx-1"
+                                        onClick={() =>
+                                          item?.edit
+                                            ? updateFormData(
+                                                item?.id,
+                                                "DescriptionAccomplishment"
+                                              )
+                                            : editFieldData(
+                                                item?.id,
+                                                index,
+                                                "DescriptionAccomplishment"
+                                              )
+                                        }
+                                      >
+                                        {item?.edit ? (
+                                          <i
+                                            className="fa fa-floppy-o"
+                                            aria-hidden="true"
+                                          />
+                                        ) : (
+                                          <i
+                                            className="fa fa-pencil-square-o"
+                                            aria-hidden="true"
+                                          />
+                                        )}
+                                      </button>
+
+                                      <button
+                                        className="btn btn-secondary"
+                                        onClick={() =>
+                                          deleteData(
+                                            item?.id,
+                                            "DescriptionAccomplishment"
+                                          )
+                                        }
+                                      >
                                         <i
-                                          className="fa fa-floppy-o"
+                                          className="fa fa-trash-o"
                                           aria-hidden="true"
                                         />
-                                      ) : (
-                                        <i
-                                          className="fa fa-pencil-square-o"
-                                          aria-hidden="true"
-                                        />
-                                      )}
-                                    </button>
-
-                                    <button
-                                      className="btn btn-secondary"
-                                      onClick={() =>
-                                        deleteData(
-                                          item?.id,
-                                          "DescriptionAccomplishment"
-                                        )
-                                      }
-                                    >
-                                      <i
-                                        className="fa fa-trash-o"
-                                        aria-hidden="true"
-                                      />
-                                    </button>
-                                  </td>
-                                </tr>
-                              );
-                            })
-                          : ""}
-                      </tbody>
-                    </table>
+                                      </button>
+                                    </td>
+                                  </tr>
+                                );
+                              })
+                            : ""}
+                        </tbody>
+                      </table>
+                    </div>
 
                     <br />
                     <br />
@@ -2899,128 +2905,134 @@ const Home = () => {
                 </label>
                 <div className="row">
                   <div className="col-md-12">
-                    <table className="table">
-                      <thead>
-                        <tr>
-                          <th>Order</th>
-                          <th>Company</th>
-                          {/* <th>Title</th> */}
-                          <th>Upload Date </th>
-                          <th>Active</th>
-                          <th>Action</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {sponsorPartnerData?.length
-                          ? sponsorPartnerData?.map((item, index) => (
-                              <tr key={index}>
-                                <td>{index + 1}</td>
-                                {/* <td>132 </td> */}
-                                {item?.edit ? (
-                                  <>
-                                    <td>
-                                      <input
-                                        type="text"
-                                        name="title"
-                                        value={editSponTitle}
-                                        onChange={(e) =>
-                                          setEditSponTitle(e?.target?.value)
-                                        }
-                                      />
-                                    </td>
+                    <div className="table-responsive">
+                      <table className="table">
+                        <thead>
+                          <tr>
+                            <th>Order</th>
+                            <th>Company</th>
+                            {/* <th>Title</th> */}
+                            <th>Upload Date </th>
+                            <th>Active</th>
+                            <th>Action</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {sponsorPartnerData?.length
+                            ? sponsorPartnerData?.map((item, index) => (
+                                <tr key={index}>
+                                  <td>{index + 1}</td>
+                                  {/* <td>132 </td> */}
+                                  {item?.edit ? (
+                                    <>
+                                      <td>
+                                        <input
+                                          type="text"
+                                          name="title"
+                                          value={editSponTitle}
+                                          onChange={(e) =>
+                                            setEditSponTitle(e?.target?.value)
+                                          }
+                                        />
+                                      </td>
 
-                                    <td>
-                                      <Image
-                                        src={
-                                          editSponMediaPreview
-                                            ? editSponMediaPreview
-                                            : "/no-img.jpg"
-                                        }
-                                        width={80}
-                                        height={80}
-                                      />
-                                      <input
-                                        type="file"
-                                        onChange={(e) =>
-                                          onchangeFile(e, "sponsorUpdate")
-                                        }
-                                      />
-                                    </td>
-                                    <td>
-                                      <input
-                                        type="checkbox"
-                                        name="status"
-                                        id="active"
-                                        checked={editSponActive}
-                                        onChange={(e) =>
-                                          setEditSponActive(e?.target?.checked)
-                                        }
-                                      />
-                                    </td>
-                                  </>
-                                ) : (
-                                  <>
-                                    {" "}
-                                    <td>{item?.title}</td>
-                                    <td>
-                                      {getFormatedDate(
-                                        item?.created_at,
-                                        "MM/DD/YYYY"
+                                      <td>
+                                        <Image
+                                          src={
+                                            editSponMediaPreview
+                                              ? editSponMediaPreview
+                                              : "/no-img.jpg"
+                                          }
+                                          width={80}
+                                          height={80}
+                                        />
+                                        <input
+                                          type="file"
+                                          onChange={(e) =>
+                                            onchangeFile(e, "sponsorUpdate")
+                                          }
+                                        />
+                                      </td>
+                                      <td>
+                                        <input
+                                          type="checkbox"
+                                          name="status"
+                                          id="active"
+                                          checked={editSponActive}
+                                          onChange={(e) =>
+                                            setEditSponActive(
+                                              e?.target?.checked
+                                            )
+                                          }
+                                        />
+                                      </td>
+                                    </>
+                                  ) : (
+                                    <>
+                                      {" "}
+                                      <td>{item?.title}</td>
+                                      <td>
+                                        {getFormatedDate(
+                                          item?.created_at,
+                                          "MM/DD/YYYY"
+                                        )}
+                                      </td>
+                                      <td>
+                                        <span className="btn ">
+                                          {parseInt(item?.active)
+                                            ? "Yes"
+                                            : "No"}
+                                        </span>{" "}
+                                      </td>
+                                    </>
+                                  )}
+                                  <td>
+                                    <button
+                                      className="btn btn-primary mx-1"
+                                      onClick={() =>
+                                        item?.edit
+                                          ? updateFormData(
+                                              item?.id,
+                                              "SponsorPartner"
+                                            )
+                                          : editFieldData(
+                                              item?.id,
+                                              index,
+                                              "SponsorPartner"
+                                            )
+                                      }
+                                    >
+                                      {item?.edit ? (
+                                        <i
+                                          className="fa fa-floppy-o"
+                                          aria-hidden="true"
+                                        />
+                                      ) : (
+                                        <i
+                                          className="fa fa-pencil-square-o"
+                                          aria-hidden="true"
+                                        />
                                       )}
-                                    </td>
-                                    <td>
-                                      <span className="btn ">
-                                        {parseInt(item?.active) ? "Yes" : "No"}
-                                      </span>{" "}
-                                    </td>
-                                  </>
-                                )}
-                                <td>
-                                  <button
-                                    className="btn btn-primary mx-1"
-                                    onClick={() =>
-                                      item?.edit
-                                        ? updateFormData(
-                                            item?.id,
-                                            "SponsorPartner"
-                                          )
-                                        : editFieldData(
-                                            item?.id,
-                                            index,
-                                            "SponsorPartner"
-                                          )
-                                    }
-                                  >
-                                    {item?.edit ? (
-                                      <i
-                                        className="fa fa-floppy-o"
-                                        aria-hidden="true"
-                                      />
-                                    ) : (
-                                      <i
-                                        className="fa fa-pencil-square-o"
-                                        aria-hidden="true"
-                                      />
-                                    )}
-                                  </button>
+                                    </button>
 
-                                  <button
-                                    className="btn btn-secondary"
-                                    onClick={() =>
-                                      deleteData(item.id, "ExecutiveList")
-                                    }
-                                  >
-                                    <i
-                                      className="fa fa-trash-o"
-                                      aria-hidden="true"
-                                    />
-                                  </button>
-                                </td>
-                              </tr>
-                            ))
-                          : null}
-                      </tbody>
-                    </table>
+                                    <button
+                                      className="btn btn-secondary"
+                                      onClick={() =>
+                                        deleteData(item.id, "ExecutiveList")
+                                      }
+                                    >
+                                      <i
+                                        className="fa fa-trash-o"
+                                        aria-hidden="true"
+                                      />
+                                    </button>
+                                  </td>
+                                </tr>
+                              ))
+                            : null}
+                        </tbody>
+                      </table>
+                    </div>
 
                     <br />
                     <br />

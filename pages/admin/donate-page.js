@@ -835,40 +835,42 @@ const DonatePage = () => {
                 </div>
 
                 <div className="col-md-12">
-                  <table className="table">
-                    <thead>
-                      <tr>
-                        <th>Count</th>
-                        <th>Amount</th>
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th>Phone</th>
-                        <th>Address</th>
-                        <th>Note</th>
-                        <th>Q/A</th>
-                        <th>Date</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {donationList?.map((item, key) => (
-                        <>
-                          <tr key={key}>
-                            <td>{key + 1} </td>
-                            <td>${item.gift_amt}</td>
-                            <td>{item.name}</td>
-                            <td>{item.email}</td>
-                            <td>{item.phone_number}</td>
-                            <td>{item.address}</td>
-                            <td>{item.gift_note}</td>
-                            <td>{item.what_ins_you_text}</td>
-                            <td>
-                              {getFormatedDate(item.created_at, "MM/DD/YYYY")}
-                            </td>
-                          </tr>
-                        </>
-                      ))}
-                    </tbody>
-                  </table>
+                  <div className="table-responsive">
+                    <table className="table">
+                      <thead>
+                        <tr>
+                          <th>Count</th>
+                          <th>Amount</th>
+                          <th>Name</th>
+                          <th>Email</th>
+                          <th>Phone</th>
+                          <th>Address</th>
+                          <th>Note</th>
+                          <th>Q/A</th>
+                          <th>Date</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {donationList?.map((item, key) => (
+                          <>
+                            <tr key={key}>
+                              <td>{key + 1} </td>
+                              <td>${item.gift_amt}</td>
+                              <td>{item.name}</td>
+                              <td>{item.email}</td>
+                              <td>{item.phone_number}</td>
+                              <td>{item.address}</td>
+                              <td>{item.gift_note}</td>
+                              <td>{item.what_ins_you_text}</td>
+                              <td>
+                                {getFormatedDate(item.created_at, "MM/DD/YYYY")}
+                              </td>
+                            </tr>
+                          </>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
 
                   <div className="text-right">
                     <p>
