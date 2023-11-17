@@ -32,27 +32,34 @@ const Events = () => {
   };
 
   const submitContactForm = async (e) => {
+    e.preventDefault();
     setIsSubmitingLoader(true);
     try {
       if (email != "" && name != "" && message != "") {
-        const formData = new FormData();
+        if (email.includes("@")) {
+          const formData = new FormData();
 
-        formData.append("email", email);
-        formData.append("name", name);
-        formData.append("message", message);
-        formData.append("section_name", "contact_us");
+          formData.append("email", email);
+          formData.append("name", name);
+          formData.append("message", message);
+          formData.append("section_name", "contact_us");
 
-        const response = await contactPageSevices.sendContactFormData(formData);
-        console.log("FORMpostRESP", response);
+          const response = await contactPageSevices.sendContactFormData(
+            formData
+          );
+          console.log("FORMpostRESP", response);
 
-        if (response?.status == 200) {
-          setIsSubmitingLoader(false);
+          if (response?.status == 200) {
+            setIsSubmitingLoader(false);
 
-          setEmail("");
-          setName("");
-          setMessage("");
+            setEmail("");
+            setName("");
+            setMessage("");
 
-          showNotification(response?.data.message, "Success");
+            showNotification(response?.data.message, "Success");
+          }
+        } else {
+          showNotification("Email must be a valid Email", "Error");
         }
       } else {
         showNotification("Please fill all the fields", "Error");
@@ -64,7 +71,7 @@ const Events = () => {
       // }
     } catch (error) {
       setIsSubmitingLoader(false);
-      console.error(error);
+      showNotification("Some Data is incomplte", "Error");
     }
     setIsSubmitingLoader(false);
   };
@@ -113,7 +120,12 @@ const Events = () => {
                       aria-hidden="true"
                     ></i>
                     <h6> PHONE NUMBER </h6>
-                    <p> {data?.phone_number} </p>
+                    <p>
+                      {" "}
+                      <Link href={`tel:${data?.phone_number}`}>
+                        {data?.phone_number}
+                      </Link>{" "}
+                    </p>
                   </div>
 
                   <div className="col-md-12 col-lg-6 contact_add">
@@ -220,7 +232,7 @@ const Events = () => {
                     </div>
 
                     <button
-                      type="button"
+                      type="submit"
                       onClick={submitContactForm}
                       className="Contact_form_btn"
                     >
