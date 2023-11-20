@@ -12,29 +12,31 @@ import { useEffect, useState } from "react";
 let persistor = persistStore(store);
 
 export default function MyApp({ Component, pageProps }) {
-  const [data, setData] = useState("");
-
-  useEffect(() => {
-    const newsData = localStorage.getItem("N-d");
-    if (newsData) {
-      setData(newsData);
-      localStorage.removeItem("N-d");
-    }
-  });
+  const { openGraphData = [] } = pageProps;
   return (
     <>
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-        <title>Kindness Campaign</title>
-        <meta name="description" content='Kindness Campaign' />
-
-        {/* <meta property="og:image:alt" content="About Acme" />
-        <meta property="og:image:type" content="image/png" />
-        <meta property="og:image:width" content="1200" />
-        <meta property="og:image:height" content="630" /> */}
-
-
+        {openGraphData?.length ? (
+          openGraphData.map((og) => <meta {...og} />)
+        ) : (
+          <>
+            <title>
+              {pageProps?.data?.title
+                ? pageProps?.data?.title
+                : "Kindness Campaign"}
+            </title>
+            <meta
+              name="description"
+              content={
+                pageProps?.data?.news_title
+                  ? pageProps?.data?.news_title
+                  : "Kindness Campaign"
+              }
+            />
+          </>
+        )}
       </Head>
 
       <Provider store={store}>

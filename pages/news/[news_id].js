@@ -56,7 +56,14 @@ export async function getStaticProps(context) {
 
   const data1 = await response.json();
 
-  const data = data1.data[0];
+  const data = data1?.data[0];
+
+  let media_url = "";
+  if (data?.media_type == "youtube") {
+    media_url = data?.media;
+  } else {
+    media_url = process.env.SITE_URL + data?.media;
+  }
 
   return {
     props: {
@@ -65,8 +72,7 @@ export async function getStaticProps(context) {
       openGraphData: [
         {
           property: "og:image",
-          content:
-            "https://glievsbwngosqvrxtupy.supabase.co/storage/v1/object/public/event-banners/Jul%208%20Darkest%20Hour%20LONG.jpeg?t=2022-06-28T21%3A47%3A43.910Z",
+          content: media_url,
           key: "ogimage",
         },
         {
@@ -81,23 +87,22 @@ export async function getStaticProps(context) {
         },
         {
           property: "og:url",
-          content: `http://foobar.com/events`,
+          content: process.env.BASE_LIVE_URL + "news/" + data?.id,
           key: "ogurl",
         },
         {
           property: "og:image:secure_url",
-          content:
-            "https://glievsbwngosqvrxtupy.supabase.co/storage/v1/object/public/event-banners/Jul%208%20Darkest%20Hour%20LONG.jpeg?t=2022-06-28T21%3A47%3A43.910Z",
+          content: media_url,
           key: "ogimagesecureurl",
         },
         {
           property: "og:title",
-          content: "Hey hey",
+          content: data?.title,
           key: "ogtitle",
         },
         {
           property: "og:description",
-          content: "Ima description",
+          content: data?.news_artical,
           key: "ogdesc",
         },
         {
