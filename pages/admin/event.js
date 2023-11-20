@@ -1170,7 +1170,7 @@ const EventPage = () => {
                         <thead>
                           <tr>
                             <th>Order</th>
-                            <th>Hits</th>
+
                             <th>Title</th>
                             <th>Media Type</th>
                             <th>Upload Date</th>
@@ -1182,7 +1182,7 @@ const EventPage = () => {
                           {eventImageList?.map((item, index) => (
                             <tr key={index}>
                               <td>{index + 1}</td>
-                              <td>{item?.hits}</td>
+
                               {item?.edit ? (
                                 <>
                                   <td>
@@ -1230,7 +1230,20 @@ const EventPage = () => {
                               ) : (
                                 <>
                                   <td>{item?.event_title}</td>
-                                  <td>{item?.event_media}</td>
+                                  <td>
+                                    {
+                                      <Image
+                                        src={
+                                          item?.event_media
+                                            ? process.env.SITE_URL +
+                                              item?.event_media
+                                            : "/no-img.jpg"
+                                        }
+                                        width={80}
+                                        height={80}
+                                      />
+                                    }
+                                  </td>
                                   <td>
                                     {getFormatedDate(
                                       item?.updated_at,
@@ -1531,13 +1544,24 @@ const EventPage = () => {
                               ) : (
                                 <>
                                   <td>{item?.event_title}</td>
-                                  <td>0</td>
+                                  <td>{rsvp[index]?.totalRSVP}</td>
                                   <td>
                                     {getFormatedDate(item?.date, "MM/DD/YYYY")}
                                   </td>
                                   <td>{item?.event_description}</td>
                                   <td>{item?.location_address}</td>
-                                  <td>{item?.media_type}</td>
+                                  <td>
+                                    {
+                                      <Image
+                                        src={
+                                          process.env.SITE_URL +
+                                          item.event_media
+                                        }
+                                        width={100}
+                                        height={80}
+                                      ></Image>
+                                    }
+                                  </td>
                                   <td>
                                     {parseInt(item?.active) ? "Yes" : "No"}
                                   </td>
@@ -1886,6 +1910,7 @@ const EventPage = () => {
                 </div>
 
                 <div className="col-md-12">
+                  <>{rsvp.length > 0 ? console.log("Rsvp", rsvp) : null}</>
                   {rsvp.map((item, key) => (
                     <span key={key}>
                       <span className="rsvpHeadings">
@@ -1915,7 +1940,12 @@ const EventPage = () => {
                                   <td>{data.user_email}</td>
                                   <td>{data.city}</td>
                                   <td>{data.state}</td>
-                                  <td>{data.created_at}</td>
+                                  <td>
+                                    {getFormatedDate(
+                                      data.created_at,
+                                      "MM/DD/YYYY"
+                                    )}
+                                  </td>
                                 </tr>
                               </tbody>
                             </>

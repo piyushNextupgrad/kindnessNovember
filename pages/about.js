@@ -159,7 +159,7 @@ const About = () => {
                           }
                           controls={true}
                           playing={false}
-                          muted={false}
+                          muted={true}
                           width={"100%"}
                         />
                       ) : data2?.section_media_type == "image" ? (
@@ -184,7 +184,7 @@ const About = () => {
                           controls={true}
                           playing={false}
                           autoplay={false}
-                          muted={false}
+                          muted={true}
                           width={"100%"}
                           height={"50vh"}
                         />
@@ -236,8 +236,8 @@ const About = () => {
                             : "demo-video.mp4"
                         }
                         controls={true}
-                          playing={false}
-                          muted={false}
+                        playing={false}
+                        muted={true}
                         width="100%"
                         height={300}
                       />
@@ -248,7 +248,7 @@ const About = () => {
                           url={heathEquityData[0]?.media}
                           controls={true}
                           playing={false}
-                          muted={false}
+                          muted={true}
                           width="100%"
                           height={300}
                         />
@@ -279,8 +279,8 @@ const About = () => {
                           : "demo-video.mp4"
                       }
                       controls={true}
-                          playing={false}
-                          muted={false}
+                      playing={false}
+                      muted={true}
                       width="100%"
                       height={300}
                     />
@@ -290,8 +290,8 @@ const About = () => {
                       <ReactPlayer
                         url={heathEquityData[1]?.media}
                         controls={true}
-                          playing={false}
-                          muted={false}
+                        playing={false}
+                        muted={true}
                         width="100%"
                         height={300}
                       />
@@ -352,8 +352,8 @@ const About = () => {
                           : "demo-video.mp4"
                       }
                       controls={true}
-                          playing={false}
-                          muted={false}
+                      playing={false}
+                      muted={true}
                       width="100%"
                       height={300}
                     />
@@ -363,8 +363,8 @@ const About = () => {
                       <ReactPlayer
                         url={heathEquityData[2]?.media}
                         controls={true}
-                          playing={false}
-                          muted={false}
+                        playing={false}
+                        muted={true}
                         width="100%"
                         height={300}
                       />
@@ -418,8 +418,8 @@ const About = () => {
                             : "demo-video.mp4"
                         }
                         controls={true}
-                          playing={false}
-                          muted={false}
+                        playing={false}
+                        muted={true}
                         width="100%"
                         height={300}
                       />
@@ -430,7 +430,7 @@ const About = () => {
                           url={heathEquityData[3]?.media}
                           controls={true}
                           playing={false}
-                          muted={false}
+                          muted={true}
                           width="100%"
                           height={300}
                         />
@@ -496,8 +496,8 @@ const About = () => {
                             : "demo-video.mp4"
                         }
                         controls={true}
-                          playing={false}
-                          muted={false}
+                        playing={false}
+                        muted={true}
                         width="100%"
                         height={300}
                       />
@@ -508,7 +508,7 @@ const About = () => {
                           url={educationEquityData[0]?.media}
                           controls={true}
                           playing={false}
-                          muted={false}
+                          muted={true}
                           width="100%"
                           height={300}
                         />
@@ -569,8 +569,8 @@ const About = () => {
                           : "demo-video.mp4"
                       }
                       controls={true}
-                          playing={false}
-                          muted={false}
+                      playing={false}
+                      muted={true}
                       width="100%"
                       height={300}
                     />
@@ -580,8 +580,8 @@ const About = () => {
                       <ReactPlayer
                         url={educationEquityData[1]?.media}
                         controls={true}
-                          playing={false}
-                          muted={false}
+                        playing={false}
+                        muted={true}
                         width="100%"
                         height={300}
                       />
@@ -633,7 +633,7 @@ const About = () => {
                       }
                       controls={true}
                       playing={false}
-                      muted={false}
+                      muted={true}
                       width="100%"
                       height={300}
                     />
@@ -643,8 +643,8 @@ const About = () => {
                       <ReactPlayer
                         url={educationEquityData[2]?.media}
                         controls={true}
-                          playing={false}
-                          muted={false}
+                        playing={false}
+                        muted={true}
                         width="100%"
                         height={300}
                       />
@@ -688,8 +688,8 @@ const About = () => {
                             : "demo-video.mp4"
                         }
                         controls={true}
-                          playing={false}
-                          muted={false}
+                        playing={false}
+                        muted={true}
                         width="100%"
                         height={300}
                       />
@@ -700,7 +700,7 @@ const About = () => {
                           url={educationEquityData[3]?.media}
                           controls={true}
                           playing={false}
-                          muted={false}
+                          muted={true}
                           width="100%"
                           height={300}
                         />
@@ -770,8 +770,8 @@ const About = () => {
                             : "demo-video.mp4"
                         }
                         controls={true}
-                          playing={false}
-                          muted={false}
+                        playing={false}
+                        muted={true}
                         width="100%"
                         height={300}
                       />
@@ -782,7 +782,7 @@ const About = () => {
                           url={workforceEquityData[0]?.media}
                           controls={true}
                           playing={false}
-                          muted={false}
+                          muted={true}
                           width="100%"
                           height={300}
                         />
@@ -842,8 +842,8 @@ const About = () => {
                           : "demo-video.mp4"
                       }
                       controls={true}
-                          playing={false}
-                          muted={false}
+                      playing={false}
+                      muted={true}
                       width="100%"
                       height={300}
                     />
@@ -853,8 +853,8 @@ const About = () => {
                       <ReactPlayer
                         url={workforceEquityData[1]?.media}
                         controls={true}
-                          playing={false}
-                          muted={false}
+                        playing={false}
+                        muted={true}
                         width="100%"
                         height={300}
                       />
@@ -916,8 +916,8 @@ const About = () => {
                           : "demo-video.mp4"
                       }
                       controls={true}
-                          playing={false}
-                          muted={false}
+                      playing={false}
+                      muted={true}
                       width="100%"
                       height={300}
                     />
@@ -927,8 +927,8 @@ const About = () => {
                       <ReactPlayer
                         url={workforceEquityData[2]?.media}
                         controls={true}
-                          playing={false}
-                          muted={false}
+                        playing={false}
+                        muted={true}
                         width="100%"
                         height={300}
                       />
@@ -972,8 +972,8 @@ const About = () => {
                             : "demo-video.mp4"
                         }
                         controls={true}
-                          playing={false}
-                          muted={false}
+                        playing={false}
+                        muted={true}
                         width="100%"
                         height={300}
                       />
@@ -984,7 +984,7 @@ const About = () => {
                           url={workforceEquityData[3]?.media}
                           controls={true}
                           playing={false}
-                          muted={false}
+                          muted={true}
                           width="100%"
                           height={300}
                         />
@@ -1045,8 +1045,8 @@ const About = () => {
                             : "demo-video.mp4"
                         }
                         controls={true}
-                          playing={false}
-                          muted={false}
+                        playing={false}
+                        muted={true}
                         width="100%"
                         height={300}
                       />
@@ -1057,7 +1057,7 @@ const About = () => {
                           url={publicEquityData[0]?.media}
                           controls={true}
                           playing={false}
-                          muted={false}
+                          muted={true}
                           width="100%"
                           height={300}
                         />
@@ -1116,7 +1116,7 @@ const About = () => {
                       }
                       controls={true}
                       playing={false}
-                      muted={false}
+                      muted={true}
                       width="100%"
                       height={300}
                     />
@@ -1126,8 +1126,8 @@ const About = () => {
                       <ReactPlayer
                         url={publicEquityData[1]?.media}
                         controls={true}
-                          playing={false}
-                          muted={false}
+                        playing={false}
+                        muted={true}
                         width="100%"
                         height={300}
                       />
@@ -1188,8 +1188,8 @@ const About = () => {
                           : "demo-video.mp4"
                       }
                       controls={true}
-                          playing={false}
-                          muted={false}
+                      playing={false}
+                      muted={true}
                       width="100%"
                       height={300}
                     />
@@ -1199,8 +1199,8 @@ const About = () => {
                       <ReactPlayer
                         url={publicEquityData[2]?.media}
                         controls={true}
-                          playing={false}
-                          muted={false}
+                        playing={false}
+                        muted={true}
                         width="100%"
                         height={300}
                       />
@@ -1242,8 +1242,8 @@ const About = () => {
                             : "demo-video.mp4"
                         }
                         controls={true}
-                          playing={false}
-                          muted={false}
+                        playing={false}
+                        muted={true}
                         width="100%"
                         height={300}
                       />
@@ -1254,7 +1254,7 @@ const About = () => {
                           url={publicEquityData[3]?.media}
                           controls={true}
                           playing={false}
-                          muted={false}
+                          muted={true}
                           width="100%"
                           height={300}
                         />

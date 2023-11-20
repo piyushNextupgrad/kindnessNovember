@@ -908,6 +908,7 @@ const Compaign_page = () => {
         const resp = await homePageService.addPageStaticContent(form_data);
 
         if (resp?.data?.success) {
+          adminMedia();
           showNotification(resp?.data?.message, "Success");
 
           setIsSubmittingLoader(false);
@@ -1257,7 +1258,7 @@ const Compaign_page = () => {
                             {heathEquityData?.length &&
                               heathEquityData?.map((item, index) => (
                                 <tr key={index}>
-                                  <td>{sno++} </td>
+                                  <td>{index + 1} </td>
                                   {/* <td>132</td> */}
                                   {item?.edit ? (
                                     <>
@@ -2066,7 +2067,7 @@ const Compaign_page = () => {
                             {workforceEquityData?.length &&
                               workforceEquityData?.map((item, index) => (
                                 <tr key={index}>
-                                  <td>{sno++} </td>
+                                  <td>{index + 1} </td>
                                   <td>132</td>
                                   {item?.edit ? (
                                     <>
@@ -2480,7 +2481,7 @@ const Compaign_page = () => {
                             {publicEquityData?.length &&
                               publicEquityData?.map((item, index) => (
                                 <tr key={index}>
-                                  <td>{sno++} </td>
+                                  <td>{index + 1} </td>
                                   <td>132</td>
                                   {item?.edit ? (
                                     <>

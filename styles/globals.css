@@ -4549,6 +4549,9 @@ input[type="text"]:hover {
   }
 }
 @media only screen and (max-width: 480px) {
+  .banner_vid {
+    width: 100%;
+  }
   .banner {
     display: grid;
 

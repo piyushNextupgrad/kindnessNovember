@@ -181,6 +181,7 @@ const DonatePage = () => {
 
       try {
         const resp = await getDonatePageSevices.updateDonType(formData);
+        donationMediaPreviewImages();
         showNotification("Data Saved Successfully", "Success");
       } catch (err) {
         // Handle any other errors that may occur during the request
@@ -194,7 +195,13 @@ const DonatePage = () => {
 
       try {
         const resp = await getDonatePageSevices.updateDonType(formData);
-        showNotification("Data Saved Successfully", "Success");
+        console.log("section7", resp);
+        if (resp.data.success) {
+          donationMediaPreviewImages();
+          dynamicData();
+          getDonationType();
+          showNotification("Data Saved Successfully", "Success");
+        }
       } catch (err) {
         // Handle any other errors that may occur during the request
         console.log(err);
