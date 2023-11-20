@@ -2515,7 +2515,8 @@ const Home = () => {
                                         </td>
                                         <td>
                                           <p className="para-width  ">
-                                            {manageReadmore ? (
+                                            {item?.news_artical}
+                                            {/* {manageReadmore ? (
                                               <>
                                                 {item?.news_artical?.slice(
                                                   0,
@@ -2542,7 +2543,7 @@ const Home = () => {
                                                   Read Less
                                                 </button>
                                               </>
-                                            )}
+                                            )} */}
                                           </p>
                                         </td>
                                         <td>
