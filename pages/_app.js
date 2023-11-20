@@ -25,14 +25,14 @@ export default function MyApp({ Component, pageProps }) {
             <title>
               {pageProps?.data?.title
                 ? pageProps?.data?.title
-                : "Kindness Campaign"}
+                : "The Kindness Campaign News"}
             </title>
             <meta
               name="description"
               content={
                 pageProps?.data?.news_title
                   ? pageProps?.data?.news_title
-                  : "Kindness Campaign"
+                  : "The Kindness Campaign News"
               }
             />
           </>
