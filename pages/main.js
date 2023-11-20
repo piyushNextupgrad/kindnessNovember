@@ -54,7 +54,8 @@ export async function getServerSideProps() {
 
 function MainPage({ metaData }) {
   const router = useRouter();
-  console.log("MetaData", metaData);
+
+  const [isSubmitingLoader, setIsSubmitingLoader] = useState(false);
 
   const [staticContent, setStaticContent] = useState({});
   const [data3, setdata3] = useState([]);
@@ -249,22 +250,32 @@ function MainPage({ metaData }) {
   };
 
   const saveSignUpData = async () => {
-    try {
-      const formData = new FormData();
+    if (signUpEmail == "") {
+      showNotification("Please fill a valid email.", "Error");
+    } else {
+      if (signUpEmail.includes("@")) {
+        setIsSubmitingLoader(true);
+        try {
+          const formData = new FormData();
 
-      formData.append("email", signUpEmail);
-      formData.append("section_name", "sign_up");
+          formData.append("email", signUpEmail);
+          formData.append("section_name", "sign_up");
 
-      const response = await getInvolvePageSevices.addSignUpData(formData);
+          const response = await getInvolvePageSevices.addSignUpData(formData);
+          console.log("SignupToday", response);
 
-      if (response?.data?.success) {
-        setSignUpEmail("");
-        showNotification("Signup successfully", "Success");
+          if (response?.data?.success) {
+            setIsSubmitingLoader(false);
+            setSignUpEmail("");
+            showNotification("Response Saved.", "Success");
+          }
+        } catch (error) {
+          setIsSubmitingLoader(false);
+          console.error(error);
+        }
       } else {
-        showNotification(response?.data?.message, "Error");
+        showNotification("Please anter a valid email.", "Error");
       }
-    } catch (error) {
-      console.error(error);
     }
   };
 
@@ -337,6 +348,21 @@ function MainPage({ metaData }) {
           toggle={toggle}
           meetExeutive={meetExeutive}
         />
+        {isSubmitingLoader ? (
+          <div className="overlay">
+            <div className="spinner-container">
+              <Spinner
+                className="loaderSpinnerPiyush"
+                style={{
+                  width: "100px",
+                  height: "100px",
+                  color: "#0a1c51fc",
+                }}
+                animation="border"
+              />
+            </div>
+          </div>
+        ) : null}
         <section className="hero">
           <div className="container position-relative">
             <div className="row gy-5" data-aos="fade-in">
