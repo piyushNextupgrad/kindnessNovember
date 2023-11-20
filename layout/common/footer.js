@@ -76,7 +76,7 @@ export default function Footer() {
                   and how you can help.
                 </h4>
 
-                <Link href="./#signuptoday">
+                <Link href="/#signuptoday">
                   <button type="butto1" className="footer_sign social_1">
                     {" "}
                     SIGN UP TODAY
